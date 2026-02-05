@@ -3,256 +3,231 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harita Sunumum</title>
+    <title>Instagram KML Viewer</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-    
     <style>
+        :root {
+            --ig-bg: #fafafa;
+            --ig-border: #dbdbdb;
+            --ig-blue: #0095f6;
+        }
+
         body {
-            background-color: #fafafa;
+            background-color: var(--ig-bg);
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 50px;
+        }
+
+        .navbar {
+            background: white;
+            width: 100%;
+            height: 60px;
+            border-bottom: 1px solid var(--ig-border);
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            margin: 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            margin-bottom: 20px;
         }
 
-        .phone-container {
+        .navbar b { font-size: 20px; letter-spacing: -1px; }
+
+        /* Instagram Post Tasarımı */
+        .post {
             background: white;
             width: 100%;
             max-width: 470px;
-            border: 1px solid #dbdbdb;
-            border-radius: 3px;
-            margin: 20px 0;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid var(--ig-border);
+            border-radius: 8px;
+            margin-bottom: 24px;
         }
 
-        .header {
-            padding: 14px;
+        .post-header {
+            padding: 12px;
             display: flex;
             align-items: center;
-            border-bottom: 1px solid #efefef;
         }
 
-        .profile-pic {
+        .profile-circle {
             width: 32px;
             height: 32px;
             border-radius: 50%;
-            background-color: #ddd;
+            background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+            padding: 2px;
             margin-right: 10px;
-            background-image: url('https://via.placeholder.com/150'); /* Profil Foton */
-            background-size: cover;
         }
 
-        .username { font-weight: 600; font-size: 14px; color: #262626; }
-
-        /* Carousel Alanı */
-        .carousel-container {
-            position: relative;
+        .profile-inner {
             width: 100%;
-            padding-top: 100%; /* 1:1 Kare */
-            overflow: hidden;
-            background-color: #f0f0f0;
+            height: 100%;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+            font-weight: bold;
         }
 
-        .slides {
+        /* Harita Alanı (Kare 1:1) */
+        .map-wrapper {
+            width: 100%;
+            padding-top: 100%;
+            position: relative;
+            background: #efefef;
+        }
+
+        .map-instance {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            display: flex;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .slide {
-            min-width: 100%;
-            height: 100%;
-            /* Harita veya Resim kapsayıcısı */
-            position: relative; 
-        }
-
-        /* Harita Ayarları */
-        #map-slide {
-            width: 100%;
-            height: 100%;
             z-index: 1;
         }
 
-        img.slide-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Navigasyon Okları */
-        .nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.9);
-            border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            z-index: 1000; /* Haritanın üstünde kalmalı */
+        .post-actions {
+            padding: 12px;
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #333;
-            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+            gap: 16px;
         }
-        .prev { left: 10px; display: none; }
-        .next { right: 10px; }
 
-        /* Alt Kısım */
-        .actions { padding: 10px 16px; }
-        .actions i { font-size: 24px; margin-right: 15px; cursor: pointer; color: #262626; }
-        .likes { padding: 0 16px; font-weight: 600; font-size: 14px; margin-bottom: 8px; }
-        .caption { padding: 0 16px 16px 16px; font-size: 14px; }
-        .caption .user-bold { font-weight: 600; margin-right: 5px; }
+        .post-actions i { font-size: 24px; cursor: pointer; }
+        .post-actions i:hover { color: #8e8e8e; }
 
-        .dots-container {
-            position: absolute;
-            bottom: 15px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: center;
-            gap: 5px;
-            z-index: 1000;
+        .caption {
+            padding: 0 12px 12px 12px;
+            font-size: 14px;
+            line-height: 1.5;
         }
-        .dot {
-            width: 6px;
-            height: 6px;
-            background-color: rgba(0,0,0,0.3);
-            border-radius: 50%;
-            transition: 0.2s;
-        }
-        .dot.active { background-color: #3897f0; }
 
+        .username { font-weight: 600; margin-right: 5px; }
+
+        #loading-status {
+            margin-top: 20px;
+            color: #8e8e8e;
+            font-size: 14px;
+        }
+
+        /* Hata Mesajı */
+        .error-box { padding: 40px; text-align: center; color: #ed4956; }
     </style>
 </head>
 <body>
 
-    <div class="phone-container">
-        <div class="header">
-            <div class="profile-pic"></div>
-            <div class="username">coğrafi_analiz</div>
-            <i class="fas fa-ellipsis-h" style="margin-left: auto;"></i>
-        </div>
-
-        <div class="carousel-container">
-            <div class="slides" id="slideContainer">
-                
-                <div class="slide">
-                    <div id="map-slide"></div>
-                </div>
-
-                <div class="slide">
-                    <img src="https://via.placeholder.com/600x600/e74c3c/ffffff?text=Analiz+Raporu" class="slide-img">
-                </div>
-
-                <div class="slide">
-                    <img src="https://via.placeholder.com/600x600/3498db/ffffff?text=Sonuçlar" class="slide-img">
-                </div>
-
-            </div>
-
-            <button class="nav-btn prev" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i></button>
-            <button class="nav-btn next" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></button>
-            <div class="dots-container" id="dots"></div>
-        </div>
-
-        <div class="actions">
-            <i class="far fa-heart"></i>
-            <i class="far fa-comment"></i>
-            <i class="far fa-paper-plane"></i>
-        </div>
-
-        <div class="likes">342 beğenme</div>
-        <div class="caption">
-            <span class="user-bold">coğrafi_analiz</span>
-            Bölge üzerindeki yeni rota çalışmamızı harita üzerinden inceleyebilirsiniz. Kaydırarak detaylara bakın! 🗺️📍 #gis #kml #harita
-        </div>
+    <div class="navbar">
+        <b>Instagram <span style="font-weight: 300;">KML</span></b>
     </div>
+
+    <div id="loading-status">Dosyalar GitHub'dan taranıyor...</div>
+    <div id="feed"></div>
 
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-plugins/3.4.0/layer/vector/KML.js"></script>
 
     <script>
-        // --- 1. HARİTA AYARLARI ---
-        // Haritayı oluştur
-        var map = L.map('map-slide', {
-            zoomControl: false, // Instagram tarzı için butonları kaldırdık (isteğe bağlı açılabilir)
-            attributionControl: false
-        }).setView([39.92, 32.85], 6); // Başlangıç: Ankara
+        // --- BURAYI KENDİ BİLGİLERİNLE DOLDUR ---
+        const GITHUB_USER = "KULLANICI_ADIN"; // Örn: hakan_yildiz
+        const GITHUB_REPO = "REPO_ADIN";      // Örn: harita-sunumlarim
+        // ---------------------------------------
 
-        // Harita altlığını (OpenStreetMap) ekle
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        async function initFeed() {
+            const feed = document.getElementById('feed');
+            const status = document.getElementById('loading-status');
 
-        // --- KML YÜKLEME ---
-        // 'data.kml' dosyasını GitHub'dan çekip haritaya basar
-        fetch('./data.kml')
-            .then(res => {
-                if (!res.ok) throw new Error("KML dosyası bulunamadı.");
-                return res.text();
-            })
-            .then(kmltext => {
-                // KML'i parse et
-                const parser = new DOMParser();
-                const kml = parser.parseFromString(kmltext, 'text/xml');
-                const track = new L.KML(kml);
-                map.addLayer(track);
+            try {
+                // 1. GitHub API ile dosyaları al
+                const response = await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/`);
+                if (!response.ok) throw new Error("Dosyalar alınamadı. Ayarları kontrol edin.");
                 
-                // Haritayı KML'in olduğu yere otomatik odakla
-                const bounds = track.getBounds();
-                map.fitBounds(bounds);
-            })
-            .catch(err => {
-                console.log("Hata:", err);
-                // Eğer dosya yoksa kullanıcı anlasın diye uyarı basalım
-                document.getElementById('map-slide').innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100%;color:red;text-align:center;">data.kml dosyası bulunamadı.<br>Lütfen GitHub\'a yükleyin.</div>';
-            });
+                const files = await response.json();
+                const kmlFiles = files.filter(f => f.name.toLowerCase().endsWith('.kml'));
 
-        // --- 2. INSTAGRAM SLAYT MANTIĞI ---
-        let currentSlide = 0;
-        const slidesContainer = document.getElementById('slideContainer');
-        const slides = document.querySelectorAll('.slide');
-        const dotsContainer = document.getElementById('dots');
-        const prevBtn = document.querySelector('.prev');
-        const nextBtn = document.querySelector('.next');
+                if (kmlFiles.length === 0) {
+                    status.innerHTML = "Hiç .kml dosyası bulunamadı. Lütfen repo'ya yükleyin.";
+                    return;
+                }
 
-        // Noktaları oluştur
-        slides.forEach((_, idx) => {
-            const dot = document.createElement('div');
-            dot.classList.add('dot');
-            if(idx === 0) dot.classList.add('active');
-            dotsContainer.appendChild(dot);
-        });
+                status.style.display = 'none';
 
-        const dots = document.querySelectorAll('.dot');
+                // 2. Her KML dosyası için bir post oluştur
+                for (const file of kmlFiles) {
+                    createPost(file);
+                }
 
-        function moveSlide(direction) {
-            currentSlide += direction;
-            if (currentSlide < 0) currentSlide = 0;
-            if (currentSlide >= slides.length) currentSlide = slides.length - 1;
-            updateUI();
-        }
-
-        function updateUI() {
-            slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
-            prevBtn.style.display = currentSlide === 0 ? 'none' : 'flex';
-            nextBtn.style.display = currentSlide === slides.length - 1 ? 'none' : 'flex';
-            dots.forEach((dot, idx) => dot.classList.toggle('active', idx === currentSlide));
-            
-            // Eğer harita slaydına geri dönersek harita boyutunu düzelt (tarayıcı hatasını önlemek için)
-            if(currentSlide === 0) {
-                setTimeout(() => { map.invalidateSize(); }, 300);
+            } catch (err) {
+                status.innerHTML = `<div class="error-box">Hata: ${err.message}</div>`;
             }
         }
+
+        function createPost(file) {
+            const feed = document.getElementById('feed');
+            
+            // Post HTML yapısı
+            const post = document.createElement('div');
+            post.className = 'post';
+            const mapId = 'map-' + Math.random().toString(36).substr(2, 9);
+
+            post.innerHTML = `
+                <div class="post-header">
+                    <div class="profile-circle"><div class="profile-inner">KML</div></div>
+                    <div class="username">${file.name}</div>
+                </div>
+                <div class="map-wrapper">
+                    <div id="${mapId}" class="map-instance"></div>
+                </div>
+                <div class="post-actions">
+                    <i class="far fa-heart" onclick="this.classList.toggle('fas'); this.classList.toggle('far'); this.style.color=this.classList.contains('fas')?'#ed4956':''"></i>
+                    <i class="far fa-comment"></i>
+                    <i class="far fa-paper-plane"></i>
+                    <i class="far fa-bookmark" style="margin-left:auto"></i>
+                </div>
+                <div class="caption">
+                    <span class="username">${GITHUB_USER}</span>
+                    Bu rota otomatik olarak <b>${file.name}</b> dosyasından oluşturulmuştur.
+                </div>
+            `;
+
+            feed.appendChild(post);
+
+            // Haritayı yükle
+            renderMap(mapId, file.download_url);
+        }
+
+        function renderMap(elementId, kmlUrl) {
+            const map = L.map(elementId, {
+                zoomControl: true,
+                attributionControl: false,
+                scrollWheelZoom: false // Sayfa kayarken haritanın zoom yapmasını engeller
+            }).setView([39, 35], 5);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+            fetch(kmlUrl)
+                .then(res => res.text())
+                .then(kmltext => {
+                    const parser = new DOMParser();
+                    const kml = parser.parseFromString(kmltext, 'text/xml');
+                    const track = new L.KML(kml);
+                    map.addLayer(track);
+                    
+                    const bounds = track.getBounds();
+                    if (bounds.isValid()) {
+                        map.fitBounds(bounds);
+                    }
+                })
+                .catch(e => console.error("Harita yüklenemedi:", e));
+        }
+
+        // Başlat
+        initFeed();
     </script>
 </body>
 </html>

@@ -194,7 +194,7 @@
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
         // --- KML YÜKLEME ---
-        // 'haritam.kml' dosyasını GitHub'dan çekip haritaya basar
+        // 'data.kml' dosyasını GitHub'dan çekip haritaya basar
         fetch('data.kml')
             .then(res => {
                 if (!res.ok) throw new Error("KML dosyası bulunamadı.");
@@ -214,7 +214,7 @@
             .catch(err => {
                 console.log("Hata:", err);
                 // Eğer dosya yoksa kullanıcı anlasın diye uyarı basalım
-                document.getElementById('map-slide').innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100%;color:red;text-align:center;">haritam.kml dosyası bulunamadı.<br>Lütfen GitHub\'a yükleyin.</div>';
+                document.getElementById('map-slide').innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100%;color:red;text-align:center;">data.kml dosyası bulunamadı.<br>Lütfen GitHub\'a yükleyin.</div>';
             });
 
         // --- 2. INSTAGRAM SLAYT MANTIĞI ---

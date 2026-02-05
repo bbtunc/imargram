@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sunum Akışım</title>
+    <title>Harita Sunumum</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    
     <style>
         body {
             background-color: #fafafa;
@@ -19,13 +21,13 @@
         .phone-container {
             background: white;
             width: 100%;
-            max-width: 470px; /* Instagram web genişliği */
+            max-width: 470px;
             border: 1px solid #dbdbdb;
             border-radius: 3px;
             margin: 20px 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
-        /* Üst Başlık */
         .header {
             padding: 14px;
             display: flex;
@@ -39,23 +41,19 @@
             border-radius: 50%;
             background-color: #ddd;
             margin-right: 10px;
-            background-image: url('https://via.placeholder.com/150'); /* Profil foton */
+            background-image: url('https://via.placeholder.com/150'); /* Profil Foton */
             background-size: cover;
         }
 
-        .username {
-            font-weight: 600;
-            font-size: 14px;
-            color: #262626;
-        }
+        .username { font-weight: 600; font-size: 14px; color: #262626; }
 
-        /* Slayt Alanı (Carousel) */
+        /* Carousel Alanı */
         .carousel-container {
             position: relative;
             width: 100%;
-            padding-top: 100%; /* 1:1 Kare oran */
+            padding-top: 100%; /* 1:1 Kare */
             overflow: hidden;
-            background-color: #000;
+            background-color: #f0f0f0;
         }
 
         .slides {
@@ -71,55 +69,51 @@
         .slide {
             min-width: 100%;
             height: 100%;
-            object-fit: contain; /* Resmi sığdır */
+            /* Harita veya Resim kapsayıcısı */
+            position: relative; 
         }
 
-        /* Oklar */
+        /* Harita Ayarları */
+        #map-slide {
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        img.slide-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Navigasyon Okları */
         .nav-btn {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(255, 255, 255, 0.9);
             border: none;
             border-radius: 50%;
             width: 30px;
             height: 30px;
             cursor: pointer;
-            z-index: 10;
+            z-index: 1000; /* Haritanın üstünde kalmalı */
             display: flex;
             align-items: center;
             justify-content: center;
             color: #333;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
         }
-        .prev { left: 10px; display: none; } /* İlk başta gizli */
+        .prev { left: 10px; display: none; }
         .next { right: 10px; }
 
-        /* Alt Aksiyonlar */
-        .actions {
-            padding: 10px 16px;
-        }
-        .actions i {
-            font-size: 24px;
-            margin-right: 15px;
-            cursor: pointer;
-            color: #262626;
-        }
-        .actions i:hover { color: #8e8e8e; }
-
-        .likes {
-            padding: 0 16px;
-            font-weight: 600;
-            font-size: 14px;
-            margin-bottom: 8px;
-        }
-
-        .caption {
-            padding: 0 16px 16px 16px;
-            font-size: 14px;
-        }
+        /* Alt Kısım */
+        .actions { padding: 10px 16px; }
+        .actions i { font-size: 24px; margin-right: 15px; cursor: pointer; color: #262626; }
+        .likes { padding: 0 16px; font-weight: 600; font-size: 14px; margin-bottom: 8px; }
+        .caption { padding: 0 16px 16px 16px; font-size: 14px; }
         .caption .user-bold { font-weight: 600; margin-right: 5px; }
-        
-        /* Noktalar (Pagination) */
+
         .dots-container {
             position: absolute;
             bottom: 15px;
@@ -128,14 +122,16 @@
             display: flex;
             justify-content: center;
             gap: 5px;
+            z-index: 1000;
         }
         .dot {
             width: 6px;
             height: 6px;
-            background-color: rgba(255,255,255,0.4);
+            background-color: rgba(0,0,0,0.3);
             border-radius: 50%;
+            transition: 0.2s;
         }
-        .dot.active { background-color: white; }
+        .dot.active { background-color: #3897f0; }
 
     </style>
 </head>
@@ -143,21 +139,30 @@
 
     <div class="phone-container">
         <div class="header">
-            <div class="profile-pic"></div> <div class="username">sunum_uzmani</div>
+            <div class="profile-pic"></div>
+            <div class="username">coğrafi_analiz</div>
             <i class="fas fa-ellipsis-h" style="margin-left: auto;"></i>
         </div>
 
         <div class="carousel-container">
             <div class="slides" id="slideContainer">
-                <img src="https://via.placeholder.com/600x600/3498db/ffffff?text=Sunum+Kapağı" class="slide">
-                <img src="https://via.placeholder.com/600x600/e74c3c/ffffff?text=Slayt+1" class="slide">
-                <img src="https://via.placeholder.com/600x600/2ecc71/ffffff?text=Slayt+2" class="slide">
-                <img src="https://via.placeholder.com/600x600/f1c40f/ffffff?text=Teşekkürler" class="slide">
+                
+                <div class="slide">
+                    <div id="map-slide"></div>
+                </div>
+
+                <div class="slide">
+                    <img src="https://via.placeholder.com/600x600/e74c3c/ffffff?text=Analiz+Raporu" class="slide-img">
+                </div>
+
+                <div class="slide">
+                    <img src="https://via.placeholder.com/600x600/3498db/ffffff?text=Sonuçlar" class="slide-img">
+                </div>
+
             </div>
 
             <button class="nav-btn prev" onclick="moveSlide(-1)"><i class="fas fa-chevron-left"></i></button>
             <button class="nav-btn next" onclick="moveSlide(1)"><i class="fas fa-chevron-right"></i></button>
-            
             <div class="dots-container" id="dots"></div>
         </div>
 
@@ -165,18 +170,54 @@
             <i class="far fa-heart"></i>
             <i class="far fa-comment"></i>
             <i class="far fa-paper-plane"></i>
-            <i class="far fa-bookmark" style="margin-left: auto; margin-right: 0;"></i>
         </div>
 
-        <div class="likes">1.245 beğenme</div>
-
+        <div class="likes">342 beğenme</div>
         <div class="caption">
-            <span class="user-bold">sunum_uzmani</span>
-            Bu hafta hazırladığım proje sunumunun detayları. Kaydırarak inceleyebilirsiniz! 🚀 #sunum #proje #tasarım
+            <span class="user-bold">coğrafi_analiz</span>
+            Bölge üzerindeki yeni rota çalışmamızı harita üzerinden inceleyebilirsiniz. Kaydırarak detaylara bakın! 🗺️📍 #gis #kml #harita
         </div>
     </div>
 
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-plugins/3.4.0/layer/vector/KML.js"></script>
+
     <script>
+        // --- 1. HARİTA AYARLARI ---
+        // Haritayı oluştur
+        var map = L.map('map-slide', {
+            zoomControl: false, // Instagram tarzı için butonları kaldırdık (isteğe bağlı açılabilir)
+            attributionControl: false
+        }).setView([39.92, 32.85], 6); // Başlangıç: Ankara
+
+        // Harita altlığını (OpenStreetMap) ekle
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+
+        // --- KML YÜKLEME ---
+        // 'haritam.kml' dosyasını GitHub'dan çekip haritaya basar
+        fetch('haritam.kml')
+            .then(res => {
+                if (!res.ok) throw new Error("KML dosyası bulunamadı.");
+                return res.text();
+            })
+            .then(kmltext => {
+                // KML'i parse et
+                const parser = new DOMParser();
+                const kml = parser.parseFromString(kmltext, 'text/xml');
+                const track = new L.KML(kml);
+                map.addLayer(track);
+                
+                // Haritayı KML'in olduğu yere otomatik odakla
+                const bounds = track.getBounds();
+                map.fitBounds(bounds);
+            })
+            .catch(err => {
+                console.log("Hata:", err);
+                // Eğer dosya yoksa kullanıcı anlasın diye uyarı basalım
+                document.getElementById('map-slide').innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100%;color:red;text-align:center;">haritam.kml dosyası bulunamadı.<br>Lütfen GitHub\'a yükleyin.</div>';
+            });
+
+        // --- 2. INSTAGRAM SLAYT MANTIĞI ---
         let currentSlide = 0;
         const slidesContainer = document.getElementById('slideContainer');
         const slides = document.querySelectorAll('.slide');
@@ -196,26 +237,21 @@
 
         function moveSlide(direction) {
             currentSlide += direction;
-
-            // Sınırları kontrol et
             if (currentSlide < 0) currentSlide = 0;
             if (currentSlide >= slides.length) currentSlide = slides.length - 1;
-
             updateUI();
         }
 
         function updateUI() {
-            // Kaydırma işlemi
             slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
-
-            // Buton görünürlüğü
             prevBtn.style.display = currentSlide === 0 ? 'none' : 'flex';
             nextBtn.style.display = currentSlide === slides.length - 1 ? 'none' : 'flex';
-
-            // Noktaları güncelle
-            dots.forEach((dot, idx) => {
-                dot.classList.toggle('active', idx === currentSlide);
-            });
+            dots.forEach((dot, idx) => dot.classList.toggle('active', idx === currentSlide));
+            
+            // Eğer harita slaydına geri dönersek harita boyutunu düzelt (tarayıcı hatasını önlemek için)
+            if(currentSlide === 0) {
+                setTimeout(() => { map.invalidateSize(); }, 300);
+            }
         }
     </script>
 </body>

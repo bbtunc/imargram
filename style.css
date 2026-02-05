@@ -1,0 +1,191 @@
+/* style.css */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+body {
+    background-color: #fafafa;
+    color: #262626;
+}
+
+/* Navbar */
+.navbar {
+    background: #fff;
+    border-bottom: 1px solid #dbdbdb;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 10px 0;
+}
+
+.nav-content {
+    max-width: 935px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'cursive', sans-serif; /* Instagram logo fontuna benzer */
+}
+
+.search-box input {
+    background: #fafafa;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    padding: 5px 10px;
+    text-align: center;
+}
+
+.nav-icons span {
+    font-size: 1.5rem;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.nav-profile {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    margin-left: 20px;
+    vertical-align: middle;
+}
+
+/* Main Container */
+.main-container {
+    max-width: 935px;
+    margin: 80px auto 0;
+    display: flex;
+    gap: 30px;
+    padding: 0 20px;
+}
+
+.feed {
+    flex: 2;
+    max-width: 614px;
+}
+
+.sidebar {
+    flex: 1;
+    display: none; /* Mobilde gizle */
+}
+
+@media (min-width: 1000px) {
+    .sidebar {
+        display: block;
+    }
+}
+
+/* Post Styles */
+.post {
+    background: #fff;
+    border: 1px solid #dbdbdb;
+    border-radius: 3px;
+    margin-bottom: 60px;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.profile-pic {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #dbdbdb;
+    margin-right: 10px;
+}
+
+.username {
+    font-weight: 600;
+    font-size: 14px;
+    color: #262626;
+}
+
+.location {
+    font-size: 12px;
+    color: #8e8e8e;
+    display: block;
+}
+
+.post-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.post-footer {
+    padding: 14px;
+}
+
+.icons {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.left-icons span, .right-icon span {
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.likes {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.caption {
+    font-size: 14px;
+}
+
+.timestamp {
+    font-size: 10px;
+    color: #8e8e8e;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+
+/* Sidebar Styles */
+.sidebar-profile {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.sidebar-profile img {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.sub-text {
+    font-size: 12px;
+    color: #8e8e8e;
+}
+
+.switch-link {
+    margin-left: auto;
+    color: #0095f6;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+}

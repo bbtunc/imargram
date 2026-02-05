@@ -195,7 +195,7 @@
 
         // --- KML YÜKLEME ---
         // 'haritam.kml' dosyasını GitHub'dan çekip haritaya basar
-        fetch('haritam.kml')
+        fetch('data.kml')
             .then(res => {
                 if (!res.ok) throw new Error("KML dosyası bulunamadı.");
                 return res.text();

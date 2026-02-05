@@ -1,32 +1,24 @@
 // app.js
 
+// Sitedeki gerçek menü ve içeriklerden oluşturulan veriler
 const posts = [
     {
-        username: "imar_istanbul",
-        userImage: "https://upload.wikimedia.org/wikipedia/tr/e/e3/İstanbul_Büyükşehir_Belediyesi_logosu.png", // İBB Logosu
-        location: "Kadıköy, İstanbul",
-        postImage: "https://im.haberturk.com/2019/12/17/ver1576579669/2550183_810x458.jpg", // Örnek bir harita/imar görseli
-        likes: 1453,
-        caption: "📍 Kadıköy İlçesi, Caferağa Mahallesi nazım imar planı değişiklikleri askıya çıkarılmıştır. Detaylar için profildeki linke tıklayınız. #ibb #imar #askı",
-        timestamp: "2 saat önce"
+        username: "imar.istanbul",
+        userImage: "img/logo.png", // Siteden indirdiğin logo
+        location: "İstanbul Genel",
+        postImage: "img/harita.jpg", // Siteden aldığın harita görseli
+        likes: 34,
+        caption: "🗺️ Ada/Parsel veya Adres bilgilerinizi girerek imar durumunu sorgulayabilirsiniz. Veriler bilgi amaçlıdır, resmi belge niteliği taşımaz.",
+        timestamp: "GÜNCEL"
     },
     {
-        username: "imar_istanbul",
-        userImage: "https://upload.wikimedia.org/wikipedia/tr/e/e3/İstanbul_Büyükşehir_Belediyesi_logosu.png",
-        location: "Arnavutköy, İstanbul",
-        postImage: "https://isbh.tmgrup.com.tr/sb/album/2020/06/12/istanbulda-imar-sorgulama-nasil-yapilir-ibb-imar-durumu-sorgulama-ekrani-1591961746237.jpg", 
-        likes: 850,
-        caption: "⚠️ ÖNEMLİ: Yeni ada/parsel sorgulama arayüzümüz güncellendi. Artık 3D görünüm desteği aktif! 🏗️",
-        timestamp: "5 saat önce"
-    },
-    {
-        username: "imar_istanbul",
-        userImage: "https://upload.wikimedia.org/wikipedia/tr/e/e3/İstanbul_Büyükşehir_Belediyesi_logosu.png",
-        location: "İBB Saraçhane",
-        postImage: "https://imar.istanbul/img/logo.png", // Site logosu
-        likes: 2024,
-        caption: "Şehrin planlaması şeffaf bir şekilde devam ediyor. İmar durumu belgenizi online alabilirsiniz. 📄",
-        timestamp: "1 gün önce"
+        username: "imar.istanbul",
+        userImage: "img/logo.png",
+        location: "Askıdaki Planlar",
+        postImage: "img/harita.jpg", // Aynı görseli kullanıyoruz (temsili)
+        likes: 12,
+        caption: "📢 İlçe ve mahalle bazında askıya çıkan 1/1000 ve 1/5000 ölçekli plan tadilatlarını sistem üzerinden inceleyebilirsiniz.",
+        timestamp: "YENİ"
     }
 ];
 
@@ -48,20 +40,20 @@ posts.forEach(post => {
             <span class="options">•••</span>
         </div>
         <div class="post-image">
-            <img src="${post.postImage}" alt="İmar Görseli">
+            <img src="${post.postImage}" alt="İmar İstanbul Harita Görünümü">
         </div>
         <div class="post-footer">
             <div class="icons">
                 <div class="left-icons">
-                    <span>❤️</span>
-                    <span>💬</span>
-                    <span>🚀</span>
+                    <span class="heart-icon">🤍</span>
+                    <span class="comment-icon">💬</span>
+                    <span>↗️</span>
                 </div>
                 <div class="right-icon">
                     <span>🔖</span>
                 </div>
             </div>
-            <div class="likes">${post.likes} beğenme</div>
+            <div class="likes">Beğeniler: ${post.likes}</div>
             <div class="caption">
                 <span class="username">${post.username}</span> ${post.caption}
             </div>

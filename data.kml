@@ -1,0 +1,1533 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2">
+  <Document>
+    <name>BARIŞBARANTUNÇ</name>
+    <description>BARIŞBARANTUNÇ</description>
+    <Style id="icon-1899-0288D1-normal">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-1.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>0</scale>
+      </LabelStyle>
+    </Style>
+    <Style id="icon-1899-0288D1-highlight">
+      <IconStyle>
+        <scale>1</scale>
+        <Icon>
+          <href>images/icon-1.png</href>
+        </Icon>
+        <hotSpot x="32" xunits="pixels" y="64" yunits="insetPixels"/>
+      </IconStyle>
+      <LabelStyle>
+        <scale>1</scale>
+      </LabelStyle>
+    </Style>
+    <StyleMap id="icon-1899-0288D1">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#icon-1899-0288D1-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#icon-1899-0288D1-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-000000-1101-128-normal">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>1.101</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>80000000</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <Style id="poly-000000-1101-128-highlight">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>1.6515</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>80000000</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <StyleMap id="poly-000000-1101-128">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-000000-1101-128-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-000000-1101-128-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-000000-1200-77-normal">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>1.2</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d000000</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <Style id="poly-000000-1200-77-highlight">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>1.8</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>4d000000</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <StyleMap id="poly-000000-1200-77">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-000000-1200-77-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-000000-1200-77-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-000000-1701-66-normal">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>1.701</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>42000000</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <Style id="poly-000000-1701-66-highlight">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>2.5515</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>42000000</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <StyleMap id="poly-000000-1701-66">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-000000-1701-66-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-000000-1701-66-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-000000-2201-150-normal">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>2.201</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>96000000</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <Style id="poly-000000-2201-150-highlight">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>3.3015</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>96000000</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <StyleMap id="poly-000000-2201-150">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-000000-2201-150-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-000000-2201-150-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Style id="poly-000000-2801-122-normal">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>2.801</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>7a000000</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <Style id="poly-000000-2801-122-highlight">
+      <LineStyle>
+        <color>ff000000</color>
+        <width>4.2015</width>
+      </LineStyle>
+      <PolyStyle>
+        <color>7a000000</color>
+        <fill>1</fill>
+        <outline>1</outline>
+      </PolyStyle>
+    </Style>
+    <StyleMap id="poly-000000-2801-122">
+      <Pair>
+        <key>normal</key>
+        <styleUrl>#poly-000000-2801-122-normal</styleUrl>
+      </Pair>
+      <Pair>
+        <key>highlight</key>
+        <styleUrl>#poly-000000-2801-122-highlight</styleUrl>
+      </Pair>
+    </StyleMap>
+    <Folder>
+      <name>BARISBARANTUNC</name>
+      <Placemark>
+        <name>MAHALLE</name>
+        <description>DOLAYOBA</description>
+      </Placemark>
+      <Placemark>
+        <name>ADA</name>
+        <description>4113</description>
+      </Placemark>
+      <Placemark>
+        <name>PARSEL</name>
+        <description>19</description>
+      </Placemark>
+      <Placemark>
+        <name>YÜZÖLÇÜM</name>
+      </Placemark>
+      <Placemark>
+        <name>FONKSİYON</name>
+      </Placemark>
+      <Placemark>
+        <name>BİRİM DEĞER (TL / m²)</name>
+      </Placemark>
+      <Placemark>
+        <name>DEĞER (TL)</name>
+      </Placemark>
+      <Placemark>
+        <name>İLÇE</name>
+        <description>PENDİK</description>
+      </Placemark>
+      <Placemark>
+        <name>PENDİK TOPLAM</name>
+        <description><![CDATA[YÜZÖLÇÜM : 12.898 M²<br>BİRİM DEĞER (TL/m²) : 40.619 TL<br>DEĞER (TL) : 523.899.180 TL]]></description>
+        <styleUrl>#icon-1899-0288D1</styleUrl>
+        <Point>
+          <coordinates>
+            29.2522631,40.904772,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>ATAŞEHİR TOPLAM</name>
+        <description><![CDATA[YÜZÖLÇÜM : 28.632 m²<br>BİRİM DEĞER (TL/m²) : 159.000 TL<br>DEĞER (TL) : 4.552.488.000 TL]]></description>
+        <styleUrl>#icon-1899-0288D1</styleUrl>
+        <Point>
+          <coordinates>
+            29.0915422,40.9868556,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>BEŞİKTAŞ TOPLAM</name>
+        <description><![CDATA[YÜZÖLÇÜM : 9.257 m²<br>BİRİM DEĞER (TL/m²) : 189.360 TL<br>DEĞER (TL) : 1.752.815.000 TL]]></description>
+        <styleUrl>#icon-1899-0288D1</styleUrl>
+        <Point>
+          <coordinates>
+            29.0358053,41.0872799,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>SARIYER TOPLAM</name>
+        <description><![CDATA[YÜZÖLÇÜM : 1.004 m²<br>BİRİM DEĞER (TL/m²) : 83.000 TL<br>DEĞER (TL) : 83.332.000 TL]]></description>
+        <styleUrl>#icon-1899-0288D1</styleUrl>
+        <Point>
+          <coordinates>
+            28.997695,41.1183381,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>KAĞITHANE TOPLAM</name>
+        <description><![CDATA[YÜZÖLÇÜM : 1.567 m²<br>BİRİM DEĞER (TL/m²) : 75.100 TL<br>DEĞER (TL) : 117.680.000 TL]]></description>
+        <styleUrl>#icon-1899-0288D1</styleUrl>
+        <Point>
+          <coordinates>
+            28.9767258,41.0971928,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>SULTANGAZİ TOPLAM</name>
+        <description><![CDATA[YÜZÖLÇÜM : 3.873 m²<br>BİRİM DEĞER (TL/m²) : 60.500 TL<br>DEĞER (TL) : 234.316.500 TL]]></description>
+        <styleUrl>#icon-1899-0288D1</styleUrl>
+        <Point>
+          <coordinates>
+            28.9000573,41.097671,0
+          </coordinates>
+        </Point>
+      </Placemark>
+      <Placemark>
+        <name>MALTEPE TOPLAM</name>
+        <description><![CDATA[YÜZÖLÇÜM : 887 m²<br>BİRİM DEĞER (TL/m²) : 80.000 TL<br>DEĞER (TL) : 70.960.000 TL]]></description>
+        <styleUrl>#icon-1899-0288D1</styleUrl>
+        <Point>
+          <coordinates>
+            29.1204204,40.9540198,0
+          </coordinates>
+        </Point>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>BARIŞBARANTUNC</name>
+      <Placemark>
+        <name>Barbaros Mahallesi 776-ada-6-parsel</name>
+        <description><![CDATA[İlçe: Ataşehir<br>Mahalle: Barbaros<br>Ada: 776<br>ParselNo: 6<br>Alan: 6.880,00<br>FONSİYON: TİCARET (T5-E:2.50 Yençok: 18 kat)<br>BİRİM DEĞER (TL/m²): 159.000 TL<br>DEĞER (TL): 4.552.488.000 TL]]></description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <ExtendedData>
+          <Data name="İlçe">
+            <value>Ataşehir</value>
+          </Data>
+          <Data name="Mahalle">
+            <value>Barbaros</value>
+          </Data>
+          <Data name="Ada">
+            <value>776</value>
+          </Data>
+          <Data name="ParselNo">
+            <value>6</value>
+          </Data>
+          <Data name="Alan">
+            <value>6.880,00</value>
+          </Data>
+          <Data name="FONSİYON">
+            <value>TİCARET (T5-E:2.50 Yençok: 18 kat)</value>
+          </Data>
+          <Data name="BİRİM DEĞER (TL/m²)">
+            <value>159.000 TL</value>
+          </Data>
+          <Data name="DEĞER (TL)">
+            <value>4.552.488.000 TL</value>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                29.09242,40.98464,0
+                29.09315,40.98533,0
+                29.09283,40.98582,0
+                29.09182,40.98534,0
+                29.09242,40.98464,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Barbaros Mahallesi 776-ada-7-parsel</name>
+        <description><![CDATA[İlçe: Ataşehir<br>Mahalle: Barbaros<br>Ada: 776<br>ParselNo: 7<br>Alan: 3.200,00<br>FONSİYON: TİCARET (T5-E:2.50 Yençok: 18 kat)<br>BİRİM DEĞER (TL/m²): 159.000 TL<br>DEĞER (TL): 4.552.488.000 TL]]></description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <ExtendedData>
+          <Data name="İlçe">
+            <value>Ataşehir</value>
+          </Data>
+          <Data name="Mahalle">
+            <value>Barbaros</value>
+          </Data>
+          <Data name="Ada">
+            <value>776</value>
+          </Data>
+          <Data name="ParselNo">
+            <value>7</value>
+          </Data>
+          <Data name="Alan">
+            <value>3.200,00</value>
+          </Data>
+          <Data name="FONSİYON">
+            <value>TİCARET (T5-E:2.50 Yençok: 18 kat)</value>
+          </Data>
+          <Data name="BİRİM DEĞER (TL/m²)">
+            <value>159.000 TL</value>
+          </Data>
+          <Data name="DEĞER (TL)">
+            <value>4.552.488.000 TL</value>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                29.09182,40.98534,0
+                29.09283,40.98582,0
+                29.0927,40.98602,0
+                29.09166,40.98553,0
+                29.09182,40.98534,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Barbaros Mahallesi 776-ada-8-parsel</name>
+        <description><![CDATA[İlçe: Ataşehir<br>Mahalle: Barbaros<br>Ada: 776<br>ParselNo: 8<br>Alan: 3.640,00<br>FONSİYON: TİCARET (T5-E:2.50 Yençok: 18 kat)<br>BİRİM DEĞER (TL/m²): 159.000 TL<br>DEĞER (TL): 4.552.488.000 TL]]></description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <ExtendedData>
+          <Data name="İlçe">
+            <value>Ataşehir</value>
+          </Data>
+          <Data name="Mahalle">
+            <value>Barbaros</value>
+          </Data>
+          <Data name="Ada">
+            <value>776</value>
+          </Data>
+          <Data name="ParselNo">
+            <value>8</value>
+          </Data>
+          <Data name="Alan">
+            <value>3.640,00</value>
+          </Data>
+          <Data name="FONSİYON">
+            <value>TİCARET (T5-E:2.50 Yençok: 18 kat)</value>
+          </Data>
+          <Data name="BİRİM DEĞER (TL/m²)">
+            <value>159.000 TL</value>
+          </Data>
+          <Data name="DEĞER (TL)">
+            <value>4.552.488.000 TL</value>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                29.09133,40.98591,0
+                29.09165,40.98553,0
+                29.09269,40.98602,0
+                29.09258,40.98619,0
+                29.09133,40.98591,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Barbaros Mahallesi 776-ada-9-parsel</name>
+        <description><![CDATA[İlçe: Ataşehir<br>Mahalle: Barbaros<br>Ada: 776<br>ParselNo: 9<br>Alan: 1.920,00<br>FONSİYON: TİCARET (T5-E:2.50 Yençok: 18 kat)<br>BİRİM DEĞER (TL/m²): 159.000 TL<br>DEĞER (TL): 4.552.488.000 TL]]></description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <ExtendedData>
+          <Data name="İlçe">
+            <value>Ataşehir</value>
+          </Data>
+          <Data name="Mahalle">
+            <value>Barbaros</value>
+          </Data>
+          <Data name="Ada">
+            <value>776</value>
+          </Data>
+          <Data name="ParselNo">
+            <value>9</value>
+          </Data>
+          <Data name="Alan">
+            <value>1.920,00</value>
+          </Data>
+          <Data name="FONSİYON">
+            <value>TİCARET (T5-E:2.50 Yençok: 18 kat)</value>
+          </Data>
+          <Data name="BİRİM DEĞER (TL/m²)">
+            <value>159.000 TL</value>
+          </Data>
+          <Data name="DEĞER (TL)">
+            <value>4.552.488.000 TL</value>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                29.09117,40.9861,0
+                29.09133,40.98591,0
+                29.09258,40.98619,0
+                29.09253,40.98626,0
+                29.09117,40.9861,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Barbaros Mahallesi 776-ada-20-parsel</name>
+        <description><![CDATA[İlçe: Ataşehir<br>Mahalle: Barbaros<br>Ada: 776<br>ParselNo: 20<br>Alan: 12.197,00<br>FONSİYON: TİCARET (T5-E:2.50 Yençok: 18 kat)<br>BİRİM DEĞER (TL/m²): 159.000 TL<br>DEĞER (TL): 4.552.488.000 TL]]></description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <ExtendedData>
+          <Data name="İlçe">
+            <value>Ataşehir</value>
+          </Data>
+          <Data name="Mahalle">
+            <value>Barbaros</value>
+          </Data>
+          <Data name="Ada">
+            <value>776</value>
+          </Data>
+          <Data name="ParselNo">
+            <value>20</value>
+          </Data>
+          <Data name="Alan">
+            <value>12.197,00</value>
+          </Data>
+          <Data name="FONSİYON">
+            <value>TİCARET (T5-E:2.50 Yençok: 18 kat)</value>
+          </Data>
+          <Data name="BİRİM DEĞER (TL/m²)">
+            <value>159.000 TL</value>
+          </Data>
+          <Data name="DEĞER (TL)">
+            <value>4.552.488.000 TL</value>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                29.09242,40.98464,0
+                29.09182,40.98534,0
+                29.09166,40.98553,0
+                29.09134,40.98591,0
+                29.09117,40.9861,0
+                29.0902,40.98599,0
+                29.09067,40.98544,0
+                29.09146,40.98486,0
+                29.09212,40.98432,0
+                29.09242,40.98464,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Gazi Mahallesi 1175-ada-3-parsel</name>
+        <description><![CDATA[İlçe: Sultangazi<br>Mahalle: Gazi<br>Ada: 1175<br>ParselNo: 3<br>Alan: 3.873,57<br>FONSİYON: KONUT+TİCARET E: 2,00 Hmax. : 40,00 m.<br>BİRİM DEĞER (TL/m²): 60.500 TL<br>DEĞER (TL): 234.316.500 TL]]></description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <ExtendedData>
+          <Data name="İlçe">
+            <value>Sultangazi</value>
+          </Data>
+          <Data name="Mahalle">
+            <value>Gazi</value>
+          </Data>
+          <Data name="Ada">
+            <value>1175</value>
+          </Data>
+          <Data name="ParselNo">
+            <value>3</value>
+          </Data>
+          <Data name="Alan">
+            <value>3.873,57</value>
+          </Data>
+          <Data name="FONSİYON">
+            <value>KONUT+TİCARET E: 2,00 Hmax. : 40,00 m.</value>
+          </Data>
+          <Data name="BİRİM DEĞER (TL/m²)">
+            <value>60.500 TL</value>
+          </Data>
+          <Data name="DEĞER (TL)">
+            <value>234.316.500 TL</value>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                28.90111,41.09636,0
+                28.90092,41.09691,0
+                28.90012,41.09693,0
+                28.90012,41.09689,0
+                28.90051,41.09642,0
+                28.90057,41.09636,0
+                28.90064,41.09633,0
+                28.90072,41.0963,0
+                28.90081,41.09628,0
+                28.90088,41.09628,0
+                28.90104,41.09628,0
+                28.90107,41.09632,0
+                28.90111,41.09636,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Rumeli Hisarı Mahallesi 1458-ada-4-parsel</name>
+        <description><![CDATA[İlçe: Beşiktaş<br>Mahalle: Rumeli Hisarı<br>Ada: 1458<br>ParselNo: 4<br>Alan: 7.056,00<br>FONSİYON: KONUT E: 0,75 Hmax: 15.50 m.<br>BİRİM DEĞER (TL/m²): 201.505 TL<br>DEĞER (TL): 1.421.820.000 TL]]></description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <ExtendedData>
+          <Data name="İlçe">
+            <value>Beşiktaş</value>
+          </Data>
+          <Data name="Mahalle">
+            <value>Rumeli Hisarı</value>
+          </Data>
+          <Data name="Ada">
+            <value>1458</value>
+          </Data>
+          <Data name="ParselNo">
+            <value>4</value>
+          </Data>
+          <Data name="Alan">
+            <value>7.056,00</value>
+          </Data>
+          <Data name="FONSİYON">
+            <value>KONUT E: 0,75 Hmax: 15.50 m.</value>
+          </Data>
+          <Data name="BİRİM DEĞER (TL/m²)">
+            <value>201.505 TL</value>
+          </Data>
+          <Data name="DEĞER (TL)">
+            <value>1.421.820.000 TL</value>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                29.03525,41.08585,0
+                29.03527,41.08577,0
+                29.03522,41.08561,0
+                29.03557,41.08553,0
+                29.03565,41.08558,0
+                29.03562,41.08575,0
+                29.03611,41.08625,0
+                29.03605,41.08688,0
+                29.0356,41.08698,0
+                29.03525,41.08585,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Rumeli Hisarı Mahallesi 1458-ada-5-parsel</name>
+        <description><![CDATA[İlçe: Beşiktaş<br>Mahalle: Rumeli Hisarı<br>Ada: 1458<br>ParselNo: 5<br>Alan: 2.200,50<br>FONSİYON: Kapalı ve açık semt spor alanı<br>BİRİM DEĞER (TL/m²): 150.419 TL<br>DEĞER (TL): 330.995.000 TL]]></description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <ExtendedData>
+          <Data name="İlçe">
+            <value>Beşiktaş</value>
+          </Data>
+          <Data name="Mahalle">
+            <value>Rumeli Hisarı</value>
+          </Data>
+          <Data name="Ada">
+            <value>1458</value>
+          </Data>
+          <Data name="ParselNo">
+            <value>5</value>
+          </Data>
+          <Data name="Alan">
+            <value>2.200,50</value>
+          </Data>
+          <Data name="FONSİYON">
+            <value>Kapalı ve açık semt spor alanı</value>
+          </Data>
+          <Data name="BİRİM DEĞER (TL/m²)">
+            <value>150.419 TL</value>
+          </Data>
+          <Data name="DEĞER (TL)">
+            <value>330.995.000 TL</value>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                29.03605,41.08688,0
+                29.03611,41.08625,0
+                29.03613,41.08623,0
+                29.03621,41.08633,0
+                29.0371,41.08596,0
+                29.03644,41.0865,0
+                29.03605,41.08688,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Dolayoba Mahallesi 4113-ada-19-parsel</name>
+        <description><![CDATA[İlçe: Pendik<br>Mahalle: Dolayoba<br>Ada: 4113<br>ParselNo: 19<br>Alan: 4.494,14<br>FONSİYON: KONUT (K2- K+T) E:2,00 Hmax.: 30,50 m. <br>BİRİM DEĞER (TL/m²): 48.000 TL<br>DEĞER (TL): 215.766.720 TL]]></description>
+        <styleUrl>#poly-000000-1701-66</styleUrl>
+        <ExtendedData>
+          <Data name="İlçe">
+            <value>Pendik</value>
+          </Data>
+          <Data name="Mahalle">
+            <value>Dolayoba</value>
+          </Data>
+          <Data name="Ada">
+            <value>4113</value>
+          </Data>
+          <Data name="ParselNo">
+            <value>19</value>
+          </Data>
+          <Data name="Alan">
+            <value>4.494,14</value>
+          </Data>
+          <Data name="FONSİYON">
+            <value>KONUT (K2- K+T) E:2,00 Hmax.: 30,50 m. </value>
+          </Data>
+          <Data name="BİRİM DEĞER (TL/m²)">
+            <value>48.000 TL</value>
+          </Data>
+          <Data name="DEĞER (TL)">
+            <value>215.766.720 TL</value>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                29.25252,40.89837,0
+                29.25232,40.89852,0
+                29.25208,40.89812,0
+                29.2525,40.89765,0
+                29.25254,40.89763,0
+                29.25256,40.89763,0
+                29.2526,40.89765,0
+                29.25315,40.89819,0
+                29.25316,40.8982,0
+                29.25312,40.89823,0
+                29.25252,40.89837,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Merkez Mahallesi 6807-ada-60-parsel</name>
+        <description><![CDATA[İlçe: Kağıthane<br>Mahalle: Merkez<br>Ada: 6807<br>ParselNo: 60<br>Alan: 328,00<br>FONSİYON: KONUT (TK2) E: 1,80 Hmax.: 36,50 m.<br>BİRİM DEĞER (TL/m²): 75.099 TL<br>DEĞER (TL): 24.632.000 TL]]></description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <ExtendedData>
+          <Data name="İlçe">
+            <value>Kağıthane</value>
+          </Data>
+          <Data name="Mahalle">
+            <value>Merkez</value>
+          </Data>
+          <Data name="Ada">
+            <value>6807</value>
+          </Data>
+          <Data name="ParselNo">
+            <value>60</value>
+          </Data>
+          <Data name="Alan">
+            <value>328,00</value>
+          </Data>
+          <Data name="FONSİYON">
+            <value>KONUT (TK2) E: 1,80 Hmax.: 36,50 m.</value>
+          </Data>
+          <Data name="BİRİM DEĞER (TL/m²)">
+            <value>75.099 TL</value>
+          </Data>
+          <Data name="DEĞER (TL)">
+            <value>24.632.000 TL</value>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                28.97738,41.09664,0
+                28.97738,41.09672,0
+                28.97709,41.09664,0
+                28.97711,41.09661,0
+                28.97713,41.09657,0
+                28.97715,41.09653,0
+                28.97717,41.09649,0
+                28.97718,41.09649,0
+                28.97738,41.09664,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Merkez Mahallesi 6807-ada-61-parsel</name>
+        <description><![CDATA[İlçe: Kağıthane<br>Mahalle: Merkez<br>Ada: 6807<br>ParselNo: 61<br>Alan: 322,00<br>FONSİYON: KONUT (TK2) E: 1,80 Hmax.: 36,50 m.<br>BİRİM DEĞER (TL/m²): 75.099 TL<br>DEĞER (TL): 24.182.000 TL]]></description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <ExtendedData>
+          <Data name="İlçe">
+            <value>Kağıthane</value>
+          </Data>
+          <Data name="Mahalle">
+            <value>Merkez</value>
+          </Data>
+          <Data name="Ada">
+            <value>6807</value>
+          </Data>
+          <Data name="ParselNo">
+            <value>61</value>
+          </Data>
+          <Data name="Alan">
+            <value>322,00</value>
+          </Data>
+          <Data name="FONSİYON">
+            <value>KONUT (TK2) E: 1,80 Hmax.: 36,50 m.</value>
+          </Data>
+          <Data name="BİRİM DEĞER (TL/m²)">
+            <value>75.099 TL</value>
+          </Data>
+          <Data name="DEĞER (TL)">
+            <value>24.182.000 TL</value>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                28.97738,41.09672,0
+                28.97738,41.09678,0
+                28.97727,41.09684,0
+                28.97704,41.09669,0
+                28.97705,41.09669,0
+                28.97708,41.09665,0
+                28.97709,41.09664,0
+                28.97738,41.09672,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Merkez Mahallesi 6807-ada-62-parsel</name>
+        <description><![CDATA[İlçe: Kağıthane<br>Mahalle: Merkez<br>Ada: 6807<br>ParselNo: 62<br>Alan: 284,00<br>FONSİYON: KONUT (TK2) E: 1,80 Hmax.: 36,50 m.<br>BİRİM DEĞER (TL/m²): 75.099 TL<br>DEĞER (TL): 21.328.000 TL]]></description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <ExtendedData>
+          <Data name="İlçe">
+            <value>Kağıthane</value>
+          </Data>
+          <Data name="Mahalle">
+            <value>Merkez</value>
+          </Data>
+          <Data name="Ada">
+            <value>6807</value>
+          </Data>
+          <Data name="ParselNo">
+            <value>62</value>
+          </Data>
+          <Data name="Alan">
+            <value>284,00</value>
+          </Data>
+          <Data name="FONSİYON">
+            <value>KONUT (TK2) E: 1,80 Hmax.: 36,50 m.</value>
+          </Data>
+          <Data name="BİRİM DEĞER (TL/m²)">
+            <value>75.099 TL</value>
+          </Data>
+          <Data name="DEĞER (TL)">
+            <value>21.328.000 TL</value>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                28.97727,41.09684,0
+                28.97713,41.09692,0
+                28.97697,41.09675,0
+                28.97698,41.09674,0
+                28.97701,41.09672,0
+                28.97704,41.09669,0
+                28.97727,41.09684,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Merkez Mahallesi 6807-ada-63-parsel</name>
+        <description><![CDATA[İlçe: Kağıthane<br>Mahalle: Merkez<br>Ada: 6807<br>ParselNo: 63<br>Alan: 319,00<br>FONSİYON: KONUT (TK2) E: 1,80 Hmax.: 36,50 m.<br>BİRİM DEĞER (TL/m²): 75.099 TL<br>DEĞER (TL): 23.957.000 TL]]></description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <ExtendedData>
+          <Data name="İlçe">
+            <value>Kağıthane</value>
+          </Data>
+          <Data name="Mahalle">
+            <value>Merkez</value>
+          </Data>
+          <Data name="Ada">
+            <value>6807</value>
+          </Data>
+          <Data name="ParselNo">
+            <value>63</value>
+          </Data>
+          <Data name="Alan">
+            <value>319,00</value>
+          </Data>
+          <Data name="FONSİYON">
+            <value>KONUT (TK2) E: 1,80 Hmax.: 36,50 m.</value>
+          </Data>
+          <Data name="BİRİM DEĞER (TL/m²)">
+            <value>75.099 TL</value>
+          </Data>
+          <Data name="DEĞER (TL)">
+            <value>23.957.000 TL</value>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                28.97713,41.09692,0
+                28.97696,41.09702,0
+                28.97688,41.09679,0
+                28.97689,41.09679,0
+                28.97693,41.09677,0
+                28.97697,41.09675,0
+                28.97713,41.09692,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Merkez Mahallesi 6807-ada-64-parsel</name>
+        <description><![CDATA[İlçe: Kağıthane<br>Mahalle: Merkez<br>Ada: 6807<br>ParselNo: 64<br>Alan: 314,00<br>FONSİYON: KONUT (TK2) E: 1,80 Hmax.: 36,50 m.<br>BİRİM DEĞER (TL/m²): 75.099 TL<br>DEĞER (TL): 23.581.000 TL]]></description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <ExtendedData>
+          <Data name="İlçe">
+            <value>Kağıthane</value>
+          </Data>
+          <Data name="Mahalle">
+            <value>Merkez</value>
+          </Data>
+          <Data name="Ada">
+            <value>6807</value>
+          </Data>
+          <Data name="ParselNo">
+            <value>64</value>
+          </Data>
+          <Data name="Alan">
+            <value>314,00</value>
+          </Data>
+          <Data name="FONSİYON">
+            <value>KONUT (TK2) E: 1,80 Hmax.: 36,50 m.</value>
+          </Data>
+          <Data name="BİRİM DEĞER (TL/m²)">
+            <value>75.099 TL</value>
+          </Data>
+          <Data name="DEĞER (TL)">
+            <value>23.581.000 TL</value>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                28.97696,41.09702,0
+                28.97677,41.09702,0
+                28.97676,41.09682,0
+                28.97679,41.09682,0
+                28.97684,41.0968,0
+                28.97688,41.09679,0
+                28.97696,41.09702,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Dolayoba Mahallesi 7191-ada-26-parsel</name>
+        <description><![CDATA[İlçe: Pendik<br>Mahalle: Dolayoba<br>Ada: 7191<br>ParselNo: 26<br>Alan: 2.737,17<br>FONSİYON: KONUT (K1) E: 1,25 Hmax.: 30,50 m. <br>BİRİM DEĞER (TL/m²): 30.000 TL<br>DEĞER (TL): 82.115.100 TL]]></description>
+        <styleUrl>#poly-000000-2201-150</styleUrl>
+        <ExtendedData>
+          <Data name="İlçe">
+            <value>Pendik</value>
+          </Data>
+          <Data name="Mahalle">
+            <value>Dolayoba</value>
+          </Data>
+          <Data name="Ada">
+            <value>7191</value>
+          </Data>
+          <Data name="ParselNo">
+            <value>26</value>
+          </Data>
+          <Data name="Alan">
+            <value>2.737,17</value>
+          </Data>
+          <Data name="FONSİYON">
+            <value>KONUT (K1) E: 1,25 Hmax.: 30,50 m. </value>
+          </Data>
+          <Data name="BİRİM DEĞER (TL/m²)">
+            <value>30.000 TL</value>
+          </Data>
+          <Data name="DEĞER (TL)">
+            <value>82.115.100 TL</value>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                29.24556,40.9123,0
+                29.24559,40.91225,0
+                29.24562,40.9122,0
+                29.24565,40.91215,0
+                29.24568,40.9121,0
+                29.24571,40.91205,0
+                29.24574,40.912,0
+                29.24577,40.91195,0
+                29.2458,40.9119,0
+                29.24583,40.91185,0
+                29.24586,40.9118,0
+                29.24589,40.91176,0
+                29.24592,40.91171,0
+                29.24613,40.91176,0
+                29.24634,40.91182,0
+                29.24632,40.91187,0
+                29.24629,40.91192,0
+                29.24626,40.91197,0
+                29.24623,40.91202,0
+                29.2462,40.91207,0
+                29.24617,40.91212,0
+                29.24614,40.91216,0
+                29.24611,40.91221,0
+                29.24608,40.91226,0
+                29.24605,40.91231,0
+                29.24602,40.91236,0
+                29.24599,40.91241,0
+                29.24577,40.91235,0
+                29.24556,40.9123,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>İ.Ayazağa Mahallesi 7304-ada-3-parsel</name>
+        <description><![CDATA[İlçe: Sarıyer<br>Mahalle: İ.Ayazağa<br>Ada: 7304<br>ParselNo: 3<br>Alan: 173,00<br>FONSİYON: KONUT (K1) E: 1,50 Hmax.: 15 Kat<br>BİRİM DEĞER (TL/m²): 83.000 TL<br>DEĞER (TL): 14.359.000 TL]]></description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <ExtendedData>
+          <Data name="İlçe">
+            <value>Sarıyer</value>
+          </Data>
+          <Data name="Mahalle">
+            <value>İ.Ayazağa</value>
+          </Data>
+          <Data name="Ada">
+            <value>7304</value>
+          </Data>
+          <Data name="ParselNo">
+            <value>3</value>
+          </Data>
+          <Data name="Alan">
+            <value>173,00</value>
+          </Data>
+          <Data name="FONSİYON">
+            <value>KONUT (K1) E: 1,50 Hmax.: 15 Kat</value>
+          </Data>
+          <Data name="BİRİM DEĞER (TL/m²)">
+            <value>83.000 TL</value>
+          </Data>
+          <Data name="DEĞER (TL)">
+            <value>14.359.000 TL</value>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                28.99765,41.1182,0
+                28.99753,41.11817,0
+                28.99759,41.11808,0
+                28.99761,41.11805,0
+                28.99776,41.1181,0
+                28.99775,41.1181,0
+                28.99765,41.1182,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>İ.Ayazağa Mahallesi 7304-ada-4-parsel</name>
+        <description><![CDATA[İlçe: Sarıyer<br>Mahalle: İ.Ayazağa<br>Ada: 7304<br>ParselNo: 4<br>Alan: 459,00<br>FONSİYON: KONUT (K1) E: 1,50 Hmax.: 15 Kat<br>BİRİM DEĞER (TL/m²): 83.000 TL<br>DEĞER (TL): 38.097.000 TL]]></description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <ExtendedData>
+          <Data name="İlçe">
+            <value>Sarıyer</value>
+          </Data>
+          <Data name="Mahalle">
+            <value>İ.Ayazağa</value>
+          </Data>
+          <Data name="Ada">
+            <value>7304</value>
+          </Data>
+          <Data name="ParselNo">
+            <value>4</value>
+          </Data>
+          <Data name="Alan">
+            <value>459,00</value>
+          </Data>
+          <Data name="FONSİYON">
+            <value>KONUT (K1) E: 1,50 Hmax.: 15 Kat</value>
+          </Data>
+          <Data name="BİRİM DEĞER (TL/m²)">
+            <value>83.000 TL</value>
+          </Data>
+          <Data name="DEĞER (TL)">
+            <value>38.097.000 TL</value>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                28.99776,41.1181,0
+                28.99761,41.11805,0
+                28.99762,41.11802,0
+                28.99768,41.11793,0
+                28.99782,41.11786,0
+                28.99797,41.11805,0
+                28.99784,41.11807,0
+                28.99776,41.1181,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>İ.Ayazağa Mahallesi 7304-ada-5-parsel</name>
+        <description><![CDATA[İlçe: Sarıyer<br>Mahalle: İ.Ayazağa<br>Ada: 7304<br>ParselNo: 5<br>Alan: 372,00<br>FONSİYON: KONUT (K1) E: 1,50 Hmax.: 15 Kat<br>BİRİM DEĞER (TL/m²): 83.000 TL<br>DEĞER (TL): 30.876.000 TL]]></description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <ExtendedData>
+          <Data name="İlçe">
+            <value>Sarıyer</value>
+          </Data>
+          <Data name="Mahalle">
+            <value>İ.Ayazağa</value>
+          </Data>
+          <Data name="Ada">
+            <value>7304</value>
+          </Data>
+          <Data name="ParselNo">
+            <value>5</value>
+          </Data>
+          <Data name="Alan">
+            <value>372,00</value>
+          </Data>
+          <Data name="FONSİYON">
+            <value>KONUT (K1) E: 1,50 Hmax.: 15 Kat</value>
+          </Data>
+          <Data name="BİRİM DEĞER (TL/m²)">
+            <value>83.000 TL</value>
+          </Data>
+          <Data name="DEĞER (TL)">
+            <value>30.876.000 TL</value>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                28.99797,41.11805,0
+                28.99782,41.11786,0
+                28.99792,41.11779,0
+                28.99815,41.11801,0
+                28.99809,41.11803,0
+                28.99798,41.11805,0
+                28.99797,41.11805,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Şeyhli Mahallesi 7306-ada-1-parsel</name>
+        <description><![CDATA[İlçe: Pendik<br>Mahalle: Şeyhli<br>Ada: 7306<br>ParselNo: 1<br>Alan: 41.490,54<br>FONSİYON: <br>BİRİM DEĞER (TL/m²): <br>DEĞER (TL): ]]></description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <ExtendedData>
+          <Data name="İlçe">
+            <value>Pendik</value>
+          </Data>
+          <Data name="Mahalle">
+            <value>Şeyhli</value>
+          </Data>
+          <Data name="Ada">
+            <value>7306</value>
+          </Data>
+          <Data name="ParselNo">
+            <value>1</value>
+          </Data>
+          <Data name="Alan">
+            <value>41.490,54</value>
+          </Data>
+          <Data name="FONSİYON">
+            <value/>
+          </Data>
+          <Data name="BİRİM DEĞER (TL/m²)">
+            <value/>
+          </Data>
+          <Data name="DEĞER (TL)">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                29.28418,40.92298,0
+                29.28379,40.92271,0
+                29.28335,40.92241,0
+                29.28291,40.92211,0
+                29.28247,40.92181,0
+                29.28203,40.92151,0
+                29.28232,40.92104,0
+                29.28262,40.92055,0
+                29.28292,40.92006,0
+                29.2834,40.92033,0
+                29.28399,40.92067,0
+                29.28405,40.92079,0
+                29.28465,40.92112,0
+                29.28478,40.9211,0
+                29.28502,40.92123,0
+                29.28481,40.92165,0
+                29.28458,40.9221,0
+                29.28436,40.92252,0
+                29.28418,40.92298,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Şeyhli Mahallesi 7309-ada-1-parsel</name>
+        <description><![CDATA[İlçe: Pendik<br>Mahalle: Şeyhli<br>Ada: 7309<br>ParselNo: 1<br>Alan: 29.884,55<br>FONSİYON: <br>BİRİM DEĞER (TL/m²): <br>DEĞER (TL): ]]></description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <ExtendedData>
+          <Data name="İlçe">
+            <value>Pendik</value>
+          </Data>
+          <Data name="Mahalle">
+            <value>Şeyhli</value>
+          </Data>
+          <Data name="Ada">
+            <value>7309</value>
+          </Data>
+          <Data name="ParselNo">
+            <value>1</value>
+          </Data>
+          <Data name="Alan">
+            <value>29.884,55</value>
+          </Data>
+          <Data name="FONSİYON">
+            <value/>
+          </Data>
+          <Data name="BİRİM DEĞER (TL/m²)">
+            <value/>
+          </Data>
+          <Data name="DEĞER (TL)">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                29.28511,40.92091,0
+                29.28473,40.92071,0
+                29.28425,40.92045,0
+                29.28422,40.92043,0
+                29.28421,40.9204,0
+                29.2842,40.92037,0
+                29.28421,40.92034,0
+                29.28432,40.92001,0
+                29.28447,40.91957,0
+                29.28463,40.91914,0
+                29.28478,40.9187,0
+                29.28493,40.91826,0
+                29.28495,40.91823,0
+                29.28499,40.91821,0
+                29.28501,40.9182,0
+                29.28508,40.91819,0
+                29.28553,40.9182,0
+                29.286,40.9182,0
+                29.28605,40.91822,0
+                29.2861,40.91825,0
+                29.28612,40.91828,0
+                29.28613,40.91832,0
+                29.2861,40.91853,0
+                29.28598,40.91894,0
+                29.28586,40.91938,0
+                29.28574,40.91983,0
+                29.28546,40.92038,0
+                29.2852,40.92088,0
+                29.28518,40.9209,0
+                29.28516,40.92091,0
+                29.28513,40.92091,0
+                29.28511,40.92091,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Kurtköy Mahallesi 7314-ada-15-parsel</name>
+        <description><![CDATA[İlçe: Pendik<br>Mahalle: Kurtköy<br>Ada: 7314<br>ParselNo: 15<br>Alan: 26.070,19<br>FONSİYON: <br>BİRİM DEĞER (TL/m²): <br>DEĞER (TL): ]]></description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <ExtendedData>
+          <Data name="İlçe">
+            <value>Pendik</value>
+          </Data>
+          <Data name="Mahalle">
+            <value>Kurtköy</value>
+          </Data>
+          <Data name="Ada">
+            <value>7314</value>
+          </Data>
+          <Data name="ParselNo">
+            <value>15</value>
+          </Data>
+          <Data name="Alan">
+            <value>26.070,19</value>
+          </Data>
+          <Data name="FONSİYON">
+            <value/>
+          </Data>
+          <Data name="BİRİM DEĞER (TL/m²)">
+            <value/>
+          </Data>
+          <Data name="DEĞER (TL)">
+            <value/>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                29.28883,40.92276,0
+                29.28896,40.92221,0
+                29.28899,40.92209,0
+                29.2891,40.92164,0
+                29.28916,40.92144,0
+                29.28918,40.92147,0
+                29.28921,40.9215,0
+                29.28926,40.92151,0
+                29.28984,40.92158,0
+                29.29043,40.92165,0
+                29.29095,40.92171,0
+                29.29102,40.9217,0
+                29.29107,40.92167,0
+                29.2911,40.92164,0
+                29.29106,40.92187,0
+                29.29105,40.92198,0
+                29.29126,40.92284,0
+                29.29126,40.92287,0
+                29.29126,40.92289,0
+                29.29125,40.92291,0
+                29.29124,40.92293,0
+                29.29122,40.92295,0
+                29.2912,40.92297,0
+                29.29118,40.92298,0
+                29.29115,40.92299,0
+                29.29112,40.923,0
+                29.29109,40.923,0
+                29.29106,40.923,0
+                29.28983,40.92287,0
+                29.28883,40.92276,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Dolayoba Mahallesi 10416-ada-27-parsel</name>
+        <description><![CDATA[İlçe: Pendik<br>Mahalle: Dolayoba<br>Ada: 10416<br>ParselNo: 27<br>Alan: 3.113,07<br>FONSİYON: KONUT (K2- K+T) E:2,00 Hmax.: 30,50 m. <br>BİRİM DEĞER (TL/m²): 48.000 TL<br>DEĞER (TL): 149.427.360 TL]]></description>
+        <styleUrl>#poly-000000-2801-122</styleUrl>
+        <ExtendedData>
+          <Data name="İlçe">
+            <value>Pendik</value>
+          </Data>
+          <Data name="Mahalle">
+            <value>Dolayoba</value>
+          </Data>
+          <Data name="Ada">
+            <value>10416</value>
+          </Data>
+          <Data name="ParselNo">
+            <value>27</value>
+          </Data>
+          <Data name="Alan">
+            <value>3.113,07</value>
+          </Data>
+          <Data name="FONSİYON">
+            <value>KONUT (K2- K+T) E:2,00 Hmax.: 30,50 m. </value>
+          </Data>
+          <Data name="BİRİM DEĞER (TL/m²)">
+            <value>48.000 TL</value>
+          </Data>
+          <Data name="DEĞER (TL)">
+            <value>149.427.360 TL</value>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                29.25311,40.9129,0
+                29.25313,40.91289,0
+                29.25364,40.9127,0
+                29.25393,40.91309,0
+                29.25388,40.91315,0
+                29.2538,40.91322,0
+                29.2537,40.91331,0
+                29.25363,40.91338,0
+                29.25355,40.91346,0
+                29.25353,40.91348,0
+                29.25311,40.9129,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Dolayoba Mahallesi 10782-ada-1-parsel</name>
+        <description><![CDATA[İlçe: Pendik<br>Mahalle: Dolayoba<br>Ada: 10782<br>ParselNo: 1<br>Alan: 2.553,43<br>FONSİYON: KONUT (K1) E: 1,25 Hmax.: 30,50 m. <br>BİRİM DEĞER (TL/m²): 30.000 TL<br>DEĞER (TL): 76.590.000 TL]]></description>
+        <styleUrl>#poly-000000-1101-128</styleUrl>
+        <ExtendedData>
+          <Data name="İlçe">
+            <value>Pendik</value>
+          </Data>
+          <Data name="Mahalle">
+            <value>Dolayoba</value>
+          </Data>
+          <Data name="Ada">
+            <value>10782</value>
+          </Data>
+          <Data name="ParselNo">
+            <value>1</value>
+          </Data>
+          <Data name="Alan">
+            <value>2.553,43</value>
+          </Data>
+          <Data name="FONSİYON">
+            <value>KONUT (K1) E: 1,25 Hmax.: 30,50 m. </value>
+          </Data>
+          <Data name="BİRİM DEĞER (TL/m²)">
+            <value>30.000 TL</value>
+          </Data>
+          <Data name="DEĞER (TL)">
+            <value>76.590.000 TL</value>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                29.2465,40.91105,0
+                29.24643,40.9117,0
+                29.2464,40.91169,0
+                29.24607,40.9116,0
+                29.24599,40.91151,0
+                29.24603,40.91106,0
+                29.24603,40.91104,0
+                29.2465,40.91105,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+      <Placemark>
+        <name>Aydınevler Mahallesi 15294-ada-10-parsel</name>
+        <description><![CDATA[İlçe: Maltepe<br>Mahalle: Aydınevler<br>Ada: 15294<br>ParselNo: 10<br>Alan: 886,98<br>FONSİYON: TİCARET E: 1,75 Hmax.: 15 kat<br>BİRİM DEĞER (TL/m²): 80.000 TL<br>DEĞER (TL): 70.960.000 TL]]></description>
+        <styleUrl>#poly-000000-1200-77</styleUrl>
+        <ExtendedData>
+          <Data name="İlçe">
+            <value>Maltepe</value>
+          </Data>
+          <Data name="Mahalle">
+            <value>Aydınevler</value>
+          </Data>
+          <Data name="Ada">
+            <value>15294</value>
+          </Data>
+          <Data name="ParselNo">
+            <value>10</value>
+          </Data>
+          <Data name="Alan">
+            <value>886,98</value>
+          </Data>
+          <Data name="FONSİYON">
+            <value>TİCARET E: 1,75 Hmax.: 15 kat</value>
+          </Data>
+          <Data name="BİRİM DEĞER (TL/m²)">
+            <value>80.000 TL</value>
+          </Data>
+          <Data name="DEĞER (TL)">
+            <value>70.960.000 TL</value>
+          </Data>
+        </ExtendedData>
+        <Polygon>
+          <outerBoundaryIs>
+            <LinearRing>
+              <tessellate>1</tessellate>
+              <coordinates>
+                29.12053,40.95383,0
+                29.12044,40.95355,0
+                29.12074,40.95352,0
+                29.12089,40.95379,0
+                29.12053,40.95383,0
+              </coordinates>
+            </LinearRing>
+          </outerBoundaryIs>
+        </Polygon>
+      </Placemark>
+    </Folder>
+    <Folder>
+      <name>Adsız katman</name>
+    </Folder>
+  </Document>
+</kml>

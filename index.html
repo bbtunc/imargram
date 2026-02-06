@@ -3,178 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İstanbul Emlak ve Değerleme Müdürlüğü Dashboard</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Leaflet CSS for Map -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <!-- Chart.js for Graphs -->
+    <title>İstanbul Emlak Değerleme Müdürlüğü - Mega Info Map Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <style>
-        body { font-family: Arial, sans-serif; background-color: #f8f9fa; }
-        #map { height: 500px; margin-bottom: 20px; }
-        .section { margin-bottom: 40px; }
-        .card { box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
+        header { background: #007bff; color: white; padding: 20px; text-align: center; }
+        .container { max-width: 1200px; margin: auto; padding: 20px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        #map { height: 400px; margin-top: 20px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #f8f9fa; }
+        .loading { text-align: center; color: #666; }
     </style>
 </head>
 <body>
-    <div class="container my-5">
-        <h1 class="text-center mb-4">İstanbul Emlak ve Değerleme Müdürlüğü Mega Info Map Dashboard</h1>
-        <p class="text-center lead">İstanbul özelinde emlak verileri: Konut satışları, ilan sayıları, fiyat artışları, kentsel dönüşüm ve yatırım analizleri. Veri kaynakları: TUİK, Endeksa, HepsEmlak, Sahibinden ve web araştırmaları (2020-2026).</p>
-
-        <!-- Section 1: Interactive Map -->
-        <div class="section">
-            <h2>İstanbul İlçeleri Haritası (Fiyat Artışı ve Kentsel Dönüşüm Yoğunluğu)</h2>
-            <div id="map" class="card"></div>
-            <p class="mt-2">Harita: İlçelerde fiyat artışı yüzdeleri (2025 verileri) ve kentsel dönüşüm aktifliği gösteriliyor. Kaynak: Endeksa ve Bakanlık verileri.</p>
-        </div>
-
-        <!-- Section 2: Konut Satış İstatistikleri -->
-        <div class="section">
-            <h2>Konut Satış İstatistikleri (Aylık/Yıllık)</h2>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card p-3">
-                        <h5>Yıllık Satışlar (TUİK Verileri)</h5>
-                        <canvas id="salesChartYearly"></canvas>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="card p-3">
-                        <h5>Aylık Satışlar (Örnek 2025-2026)</h5>
-                        <canvas id="salesChartMonthly"></canvas>
-                    </div>
-                </div>
+    <header>
+        <h1>İstanbul Emlak & Değerleme Mega Dashboard</h1>
+        <p>Konut yatırımı için aylık/yıllık/anlık veriler | Kaynaklar: TÜİK, Endeksa, Sahibinden, Hepsiemlak [web:5][web:14]</p>
+    </header>
+    <div class="container">
+        <div class="grid">
+            <div class="card">
+                <h2>Konut Satış İstatistikleri (TÜİK 2025)</h2>
+                <div>İstanbul Ekim 2025: 26.305 satış (en yüksek) [web:5]</div>
+                <div>Ocak-Ekim 2025: Türkiye 1.293.033 satış (+%16.2) [web:5]</div>
+                <canvas id="salesChart"></canvas>
             </div>
-            <p>2025 Yılı Toplam: 1.688.910 konut (Türkiye). İstanbul: 280.262. 2026 Ocak: Artış trendi devam ediyor.</p>
-        </div>
-
-        <!-- Section 3: İlan Sayıları ve Değişimler -->
-        <div class="section">
-            <h2>İlan Sayıları ve Aylık Değişimler (Sahibinden, HepsEmlak)</h2>
-            <div class="card p-3">
-                <h5>Aylık İlan Değişimi (2025-2026)</h5>
-                <canvas id="listingsChart"></canvas>
-            </div>
-            <ul>
-                <li>HepsEmlak: Şu an 38.198 ilan (Şubat 2026). Aylık artış: %13.4 (İstanbul).</li>
-                <li>Sahibinden: Erişim sınırlı, ancak genel trend: Aralık 2025'te %19.8 artış, 254.777 ilan.</li>
-                <li>Değişim: 2025'te Ankara %22 artış, İstanbul %13.4. 2026'da düşüş beklenmiyor, faiz indirimleri ile artış.</li>
-            </ul>
-        </div>
-
-        <!-- Section 4: Fiyat Artışı Analizi -->
-        <div class="section">
-            <h2>En Çok Fiyat Artışı Olan İlçeler (2025-2026)</h2>
-            <div class="card p-3">
-                <table class="table table-striped">
-                    <thead>
-                        <tr><th>İlçe</th><th>Ortalama m² Fiyat (TL)</th><th>Yıllık Artış (%)</th></tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>Beykoz</td><td>101.296</td><td>58.91</td></tr>
-                        <tr><td>Zeytinburnu</td><td>69.616</td><td>48.54</td></tr>
-                        <tr><td>Güngören</td><td>43.054</td><td>47.43</td></tr>
-                        <tr><td>Bahçelievler</td><td>48.000</td><td>44.84</td></tr>
-                        <tr><td>Maltepe</td><td>80.007</td><td>44.40</td></tr>
-                        <tr><td>Üsküdar</td><td>90.354</td><td>43.29</td></tr>
-                        <tr><td>Pendik</td><td>55.684</td><td>40.83</td></tr>
-                        <tr><td>Ataşehir</td><td>75.142</td><td>40.58</td></tr>
-                        <tr><td>Kartal</td><td>67.816</td><td>39.58</td></tr>
-                        <tr><td>Şile</td><td>64.854</td><td>39.40</td></tr>
-                    </tbody>
+            <div class="card">
+                <h2>Fiyat Artışı En Yüksek İlçeler (Endeksa 2025)</h2>
+                <table>
+                    <tr><th>İlçe</th><th>Fiyat Artışı (%)</th><th>m² Fiyat (TL)</th></tr>
+                    <tr><td>Beykoz</td><td>58.91</td><td>101.296 [web:6][web:14]</td></tr>
+                    <tr><td>Zeytinburnu</td><td>48.54</td><td>69.616 [web:6][web:14]</td></tr>
+                    <tr><td>Güngören</td><td>Yüksek</td><td>- [web:14]</td></tr>
+                    <tr><td>Bahçelievler</td><td>Yüksek</td><td>- [web:14]</td></tr>
+                    <tr><td>Avcılar</td><td>Yüksek</td><td>- [web:14]</td></tr>
                 </table>
             </div>
-            <p>2026 Beklentisi: Nominal %35-45 artış, reel %10 getiri. Kaynak: Endeksa, TCMB.</p>
-        </div>
-
-        <!-- Section 5: Kentsel Dönüşüm Analizi -->
-        <div class="section">
-            <h2>Kentsel Dönüşüm En Aktif İlçeler (2026)</h2>
-            <div class="card p-3">
-                <ul class="list-group">
-                    <li class="list-group-item">Bahçelievler: %23 pay, en aktif ilçe (927 bin konut dönüştürüldü).</li>
-                    <li class="list-group-item">Üsküdar ve Kadıköy: Eski yapı stoğu nedeniyle yoğun.</li>
-                    <li class="list-group-item">Göztepe: Riskli binalar öncelikli.</li>
-                    <li class="list-group-item">Esenler, Gaziosmanpaşa, Bağcılar: Büyük ölçekli projeler.</li>
-                    <li class="list-group-item">Maltepe: "Yarısı Bizden" kampanyası aktif.</li>
-                    <li class="list-group-item">Toplam: 927 bin konut yenilendi, 300 bin devam ediyor.</li>
+            <div class="card">
+                <h2>Kentsel Dönüşüm Yoğun İlçeler</h2>
+                <ul>
+                    <li>Üsküdar, Kadıköy, Göztepe [web:12]</li>
+                    <li>Bahçelievler, Küçükçekmece, Güngören [web:12]</li>
+                    <li>Esener, Gaziosmanpaşa, Zeytinburnu [web:17]</li>
                 </ul>
             </div>
-            <p>Kaynak: Çevre Bakanlığı, Belediye verileri.</p>
-        </div>
-
-        <!-- Section 6: Yatırım Analizi -->
-        <div class="section">
-            <h2>Konut Yatırımı Getirisi (2026)</h2>
-            <div class="card p-3">
-                <canvas id="roiChart"></canvas>
+            <div class="card">
+                <h2>İlan Sayıları & Trendler (Sahibinden 2025)</h2>
+                <div>Mart 2025: Satılık ilan 845.621 (+%4) [web:13]</div>
+                <div>Satış oranı %4 [web:13]</div>
+                <canvas id="ilanChart"></canvas>
             </div>
-            <p>Amortisman Süresi: 15-18 yıl. Reel Getiri: %10. En İyi Bölgeler: Beykoz, Maltepe, Pendik. Kira Getirisi: Bahçelievler %10.93.</p>
+        </div>
+        <div class="card" style="grid-column: span 2;">
+            <h2>İstanbul Emlak Haritası</h2>
+            <div id="map"></div>
+            <p>Harita: Fiyat artışı yoğun ilçeler işaretli (Beykoz, Zeytinburnu vb.) [web:6][web:14]</p>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <h2>Yatırım Önerileri 2026</h2>
+                <div>Ort. fiyat artışı %20-40 bekleniyor [web:15]</div>
+                <div>Kısa amortisman: Adalar, Fatih, Esenyurt [web:14]</div>
+            </div>
+            <div class="card">
+                <h2>API Entegrasyonları</h2>
+                <p>Endeksa API: Fiyat trendleri, demografik veriler [page:1][web:4]</p>
+                <p>Sahibinden/Hepsiemlak: Kurumsal API ile ilan transferi [web:2][web:3]</p>
+                <p>Dashboard'ı dinamikleştirmek için entegre edin (kod örnekleri ekleyin).</p>
+            </div>
         </div>
     </div>
-
-    <!-- Scripts -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
-        // Map Initialization
-        var map = L.map('map').setView([41.0082, 28.9784], 10); // Istanbul coordinates
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-
-        // Sample District Markers (Add more as needed)
-        var districts = [
-            {name: 'Beykoz', lat: 41.1333, lon: 29.1667, priceIncrease: 58.91, urbanRenewal: 'Orta'},
-            {name: 'Zeytinburnu', lat: 40.9833, lon: 28.9000, priceIncrease: 48.54, urbanRenewal: 'Yüksek'},
-            // Add more districts...
-        ];
-        districts.forEach(d => {
-            L.marker([d.lat, d.lon]).addTo(map)
-                .bindPopup(`${d.name}: Fiyat Artışı %${d.priceIncrease}, Kentsel Dönüşüm: ${d.urbanRenewal}`);
+        // Satış Chart (Örnek TÜİK verileri)
+        const salesCtx = document.getElementById('salesChart').getContext('2d');
+        new Chart(salesCtx, {
+            type: 'line',
+             {
+                labels: ['Oca-Eki 2024', 'Oca-Eki 2025'],
+                datasets: [{ label: 'Türkiye Konut Satış',  [1113000, 1293033], borderColor: 'blue' }]
+            }
         });
 
-        // Yearly Sales Chart
-        var ctxYearly = document.getElementById('salesChartYearly').getContext('2d');
-        new Chart(ctxYearly, {
+        // İlan Chart
+        const ilanCtx = document.getElementById('ilanChart').getContext('2d');
+        new Chart(ilanCtx, {
             type: 'bar',
-            data: {
-                labels: ['2020', '2021', '2022', '2023', '2024', '2025'],
-                datasets: [{ label: 'Türkiye Konut Satışları (Milyon)', data: [1.5, 1.4, 1.3, 1.2, 1.1, 1.688], backgroundColor: '#007bff' }]
-            },
-            options: { scales: { y: { beginAtZero: true } } }
-        });
-
-        // Monthly Sales Chart
-        var ctxMonthly = document.getElementById('salesChartMonthly').getContext('2d');
-        new Chart(ctxMonthly, {
-            type: 'line',
-            data: {
-                labels: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'],
-                datasets: [{ label: '2025 Aylık Satışlar (Bin)', data: [105, 113, 190, 119, 142, 143, 254, 0, 0, 0, 0, 0], borderColor: '#28a745' }]
+             {
+                labels: ['Şub 2025', 'Mar 2025'],
+                datasets: [{ label: 'Satılık İlan',  [808776, 845621], backgroundColor: 'green' }]
             }
         });
 
-        // Listings Chart
-        var ctxListings = document.getElementById('listingsChart').getContext('2d');
-        new Chart(ctxListings, {
-            type: 'line',
-            data: {
-                labels: ['2025 Ocak', '2025 Aralık', '2026 Ocak', '2026 Şubat'],
-                datasets: [{ label: 'İlan Sayısı (Bin)', data: [30, 38, 40, 38.198], borderColor: '#ffc107' }]
-            }
-        });
-
-        // ROI Chart
-        var ctxRoi = document.getElementById('roiChart').getContext('2d');
-        new Chart(ctxRoi, {
-            type: 'pie',
-            data: {
-                labels: ['Reel Getiri %10', 'Amortisman 15-18 Yıl', 'Kira Getirisi %10+'],
-                datasets: [{ data: [10, 16.5, 10.5], backgroundColor: ['#dc3545', '#6f42c1', '#17a2b8'] }]
-            }
-        });
+        // Harita
+        const map = L.map('map').setView([41.0082, 28.9784], 10);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+        const hotspots = [
+            { coords: [41.12, 29.05], name: 'Beykoz (%58.91)' }, // Yaklaşık koordinatlar
+            { coords: [40.99, 28.90], name: 'Zeytinburnu' },
+            { coords: [41.00, 28.87], name: 'Güngören' }
+        ];
+        hotspots.forEach(h => L.marker(h.coords).addTo(map).bindPopup(h.name));
     </script>
-
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

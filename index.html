@@ -1,113 +1,75 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>İstanbul Emlak Değerleme Müdürlüğü - Mega Info Map Dashboard</title>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f4f4; }
-        header { background: #007bff; color: white; padding: 20px; text-align: center; }
-        .container { max-width: 1200px; margin: auto; padding: 20px; }
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 20px; }
-        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        #map { height: 400px; margin-top: 20px; }
-        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; }
-        th { background: #f8f9fa; }
-        .loading { text-align: center; color: #666; }
-    </style>
+  <meta charset="UTF-8">
+  <title>İstanbul Emlak Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial; margin: 0; padding: 20px;}
+    .chart { width: 100%; height: 400px; margin-bottom: 40px;}
+  </style>
 </head>
 <body>
-    <header>
-        <h1>İstanbul Emlak & Değerleme Mega Dashboard</h1>
-        <p>Konut yatırımı için aylık/yıllık/anlık veriler | Kaynaklar: TÜİK, Endeksa, Sahibinden, Hepsiemlak [web:5][web:14]</p>
-    </header>
-    <div class="container">
-        <div class="grid">
-            <div class="card">
-                <h2>Konut Satış İstatistikleri (TÜİK 2025)</h2>
-                <div>İstanbul Ekim 2025: 26.305 satış (en yüksek) [web:5]</div>
-                <div>Ocak-Ekim 2025: Türkiye 1.293.033 satış (+%16.2) [web:5]</div>
-                <canvas id="salesChart"></canvas>
-            </div>
-            <div class="card">
-                <h2>Fiyat Artışı En Yüksek İlçeler (Endeksa 2025)</h2>
-                <table>
-                    <tr><th>İlçe</th><th>Fiyat Artışı (%)</th><th>m² Fiyat (TL)</th></tr>
-                    <tr><td>Beykoz</td><td>58.91</td><td>101.296 [web:6][web:14]</td></tr>
-                    <tr><td>Zeytinburnu</td><td>48.54</td><td>69.616 [web:6][web:14]</td></tr>
-                    <tr><td>Güngören</td><td>Yüksek</td><td>- [web:14]</td></tr>
-                    <tr><td>Bahçelievler</td><td>Yüksek</td><td>- [web:14]</td></tr>
-                    <tr><td>Avcılar</td><td>Yüksek</td><td>- [web:14]</td></tr>
-                </table>
-            </div>
-            <div class="card">
-                <h2>Kentsel Dönüşüm Yoğun İlçeler</h2>
-                <ul>
-                    <li>Üsküdar, Kadıköy, Göztepe [web:12]</li>
-                    <li>Bahçelievler, Küçükçekmece, Güngören [web:12]</li>
-                    <li>Esener, Gaziosmanpaşa, Zeytinburnu [web:17]</li>
-                </ul>
-            </div>
-            <div class="card">
-                <h2>İlan Sayıları & Trendler (Sahibinden 2025)</h2>
-                <div>Mart 2025: Satılık ilan 845.621 (+%4) [web:13]</div>
-                <div>Satış oranı %4 [web:13]</div>
-                <canvas id="ilanChart"></canvas>
-            </div>
-        </div>
-        <div class="card" style="grid-column: span 2;">
-            <h2>İstanbul Emlak Haritası</h2>
-            <div id="map"></div>
-            <p>Harita: Fiyat artışı yoğun ilçeler işaretli (Beykoz, Zeytinburnu vb.) [web:6][web:14]</p>
-        </div>
-        <div class="grid">
-            <div class="card">
-                <h2>Yatırım Önerileri 2026</h2>
-                <div>Ort. fiyat artışı %20-40 bekleniyor [web:15]</div>
-                <div>Kısa amortisman: Adalar, Fatih, Esenyurt [web:14]</div>
-            </div>
-            <div class="card">
-                <h2>API Entegrasyonları</h2>
-                <p>Endeksa API: Fiyat trendleri, demografik veriler [page:1][web:4]</p>
-                <p>Sahibinden/Hepsiemlak: Kurumsal API ile ilan transferi [web:2][web:3]</p>
-                <p>Dashboard'ı dinamikleştirmek için entegre edin (kod örnekleri ekleyin).</p>
-            </div>
-        </div>
-    </div>
-    <script>
-        // Satış Chart (Örnek TÜİK verileri)
-        const salesCtx = document.getElementById('salesChart').getContext('2d');
-        new Chart(salesCtx, {
-            type: 'line',
-             {
-                labels: ['Oca-Eki 2024', 'Oca-Eki 2025'],
-                datasets: [{ label: 'Türkiye Konut Satış',  [1113000, 1293033], borderColor: 'blue' }]
-            }
-        });
+  <h1>İstanbul Emlak Dashboard</h1>
+  <canvas id="ilanTrend" class="chart"></canvas>
+  <canvas id="fiyatTrend" class="chart"></canvas>
+  <canvas id="semtFiyat" class="chart"></canvas>
 
-        // İlan Chart
-        const ilanCtx = document.getElementById('ilanChart').getContext('2d');
-        new Chart(ilanCtx, {
-            type: 'bar',
-             {
-                labels: ['Şub 2025', 'Mar 2025'],
-                datasets: [{ label: 'Satılık İlan',  [808776, 845621], backgroundColor: 'green' }]
-            }
-        });
+  <script>
+    const API_BASE = "https://your-backend-api.com";
 
-        // Harita
-        const map = L.map('map').setView([41.0082, 28.9784], 10);
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
-        const hotspots = [
-            { coords: [41.12, 29.05], name: 'Beykoz (%58.91)' }, // Yaklaşık koordinatlar
-            { coords: [40.99, 28.90], name: 'Zeytinburnu' },
-            { coords: [41.00, 28.87], name: 'Güngören' }
-        ];
-        hotspots.forEach(h => L.marker(h.coords).addTo(map).bindPopup(h.name));
-    </script>
+    async function fetchData(endpoint) {
+      const res = await fetch(API_BASE + endpoint);
+      return res.json();
+    }
+
+    async function initDashboard() {
+      // Aylık İlan Trend
+      const ilanData = await fetchData("/ilanlar/trend?group=ay");
+      new Chart(document.getElementById("ilanTrend"), {
+        type: 'bar',
+        data: {
+          labels: ilanData.labels,
+          datasets: [{
+            label: "Aylık İlan Sayısı",
+            data: ilanData.values,
+            backgroundColor: "rgba(54, 162, 235, 0.6)"
+          }]
+        }
+      });
+
+      // Fiyat Trend
+      const fiyatData = await fetchData("/fiyat/trend?group=ay");
+      new Chart(document.getElementById("fiyatTrend"), {
+        type: 'line',
+        data: {
+          labels: fiyatData.labels,
+          datasets: [{
+            label: "Ortalama Fiyat",
+            data: fiyatData.values,
+            borderColor: "rgba(255, 99, 132, 1)",
+            fill: false
+          }]
+        }
+      });
+
+      // Semt Bazlı Fiyat
+      const semtData = await fetchData("/fiyat/semt");
+      new Chart(document.getElementById("semtFiyat"), {
+        type: 'bar',
+        data: {
+          labels: semtData.labels,
+          datasets: [{
+            label: "Semt Ortalama Fiyat",
+            data: semtData.values,
+            backgroundColor: "rgba(75, 192, 192, 0.6)"
+          }]
+        }
+      });
+
+    }
+
+    initDashboard();
+  </script>
 </body>
 </html>

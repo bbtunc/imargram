@@ -4,474 +4,437 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pendik Arkatlı Daire Asistanı</title>
+    <title>Pendik Arkatlı Daire Bilgi Sistemi</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 10px;
+            padding: 15px;
         }
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
             background: white;
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             overflow: hidden;
         }
         .header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 25px;
+            padding: 30px;
             text-align: center;
         }
-        .header h1 { font-size: 22px; margin-bottom: 8px; }
-        .header p { opacity: 0.95; font-size: 13px; }
-        .status-bar {
-            background: #f8f9fa;
-            padding: 12px 20px;
-            border-bottom: 1px solid #e0e0e0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 12px;
-        }
-        .api-status {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: #dc3545;
-        }
-        .status-dot.active {
-            background: #28a745;
-            animation: blink 2s infinite;
-        }
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
-        }
-        .btn-settings {
-            padding: 6px 12px;
-            background: #6c757d;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 11px;
-        }
-        .btn-settings:hover { background: #5a6268; }
-        .quick-stats {
+        .header h1 { font-size: 24px; margin-bottom: 10px; }
+        .header p { opacity: 0.9; font-size: 14px; }
+        .stats {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 10px;
-            padding: 15px;
+            gap: 15px;
+            padding: 20px;
             background: #f8f9fa;
             border-bottom: 1px solid #e0e0e0;
         }
         .stat {
             text-align: center;
-            padding: 10px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-        }
-        .stat .number { font-size: 24px; font-weight: bold; color: #1e3c72; }
-        .stat .label { font-size: 11px; color: #666; margin-top: 4px; }
-        .chat-container {
-            height: 420px;
-            overflow-y: auto;
-            padding: 20px;
-            background: #fafafa;
-            scroll-behavior: smooth;
-        }
-        .message {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: flex-start;
-            animation: slideIn 0.3s ease;
-        }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .message.user { flex-direction: row-reverse; }
-        .message-content {
-            max-width: 75%;
-            padding: 12px 16px;
-            border-radius: 18px;
-            font-size: 14px;
-            line-height: 1.6;
-        }
-        .message.ai .message-content {
-            background: white;
-            color: #333;
-            border: 1px solid #e0e0e0;
-        }
-        .message.user .message-content {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
-        }
-        .input-container {
             padding: 15px;
             background: white;
-            border-top: 2px solid #e0e0e0;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         }
-        .quick-buttons {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 10px;
-            overflow-x: auto;
-            padding-bottom: 5px;
+        .stat .number { font-size: 28px; font-weight: bold; color: #667eea; }
+        .stat .label { font-size: 12px; color: #666; margin-top: 5px; }
+        .search-section {
+            padding: 25px;
+            background: white;
+            border-bottom: 2px solid #e0e0e0;
         }
-        .quick-btn {
-            padding: 6px 12px;
-            background: #f0f0f0;
-            border: 1px solid #ddd;
-            border-radius: 15px;
-            font-size: 12px;
-            cursor: pointer;
-            white-space: nowrap;
-            transition: all 0.2s;
+        .search-box {
+            position: relative;
+            margin-bottom: 20px;
         }
-        .quick-btn:hover {
-            background: #1e3c72;
-            color: white;
-        }
-        .input-wrapper {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-        }
-        #userInput {
-            flex: 1;
-            padding: 12px 16px;
+        .search-box input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
             border: 2px solid #e0e0e0;
-            border-radius: 25px;
-            font-size: 14px;
+            border-radius: 12px;
+            font-size: 16px;
             outline: none;
-        }
-        #userInput:focus { border-color: #1e3c72; }
-        .btn {
-            padding: 12px 20px;
-            border: none;
-            border-radius: 25px;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
             transition: all 0.3s;
         }
-        .btn-primary {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            color: white;
+        .search-box input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
         }
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(30, 60, 114, 0.4);
-        }
-        .btn-voice {
-            background: #dc3545;
-            color: white;
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .search-box .icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
             font-size: 20px;
-            padding: 0;
+            color: #999;
         }
-        .btn-voice:hover { background: #c82333; }
-        .btn-voice.recording {
-            background: #28a745;
-            animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        .loading {
-            display: none;
-            text-align: center;
-            padding: 10px;
-            color: #1e3c72;
-        }
-        .loading.active { display: block; }
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-        }
-        .modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 15px;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-        }
-        .modal-content h2 { margin-bottom: 15px; color: #1e3c72; }
-        .modal-content p { margin-bottom: 20px; color: #666; font-size: 14px; }
-        .modal-content input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 14px;
-            margin-bottom: 15px;
-            font-family: monospace;
-        }
-        .modal-buttons {
+        .quick-filters {
             display: flex;
             gap: 10px;
+            flex-wrap: wrap;
         }
-        .modal-buttons button {
-            flex: 1;
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-size: 14px;
-            font-weight: 600;
+        .filter-btn {
+            padding: 8px 16px;
+            background: #f0f0f0;
+            border: 2px solid transparent;
+            border-radius: 20px;
+            font-size: 13px;
             cursor: pointer;
+            transition: all 0.2s;
         }
-        .modal-buttons .btn-save { background: #1e3c72; color: white; }
-        .modal-buttons .btn-cancel { background: #6c757d; color: white; }
-        @media (max-width: 600px) {
-            .quick-stats { grid-template-columns: repeat(2, 1fr); }
-            .chat-container { height: 350px; }
+        .filter-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+        .filter-btn.active {
+            background: #667eea;
+            color: white;
+            border-color: #5568d3;
+        }
+        .results {
+            padding: 25px;
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        .result-item {
+            background: white;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            transition: all 0.3s;
+        }
+        .result-item:hover {
+            border-color: #667eea;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+        }
+        .result-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .daire-kod {
+            font-size: 20px;
+            font-weight: bold;
+            color: #667eea;
+        }
+        .deger {
+            font-size: 18px;
+            font-weight: bold;
+            color: #28a745;
+        }
+        .result-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .detail-item {
+            font-size: 14px;
+            color: #666;
+        }
+        .detail-item strong {
+            color: #333;
+            display: block;
+            margin-bottom: 3px;
+        }
+        .sorun-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            background: #dc3545;
+            color: white;
+            border-radius: 15px;
+            font-size: 12px;
+            margin-top: 10px;
+        }
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: #999;
+        }
+        .no-results .icon {
+            font-size: 60px;
+            margin-bottom: 20px;
+        }
+        .blok-section {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        .blok-header {
+            font-size: 18px;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .blok-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+        .blok-stat {
+            background: white;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        @media (max-width: 768px) {
+            .stats { grid-template-columns: repeat(2, 1fr); }
+            .result-details { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🏢 Pendik Arkatlı Daire Asistanı</h1>
-            <p>Sesli ve yazılı komutlarla anında bilgi - Gemini AI</p>
+            <h1>🏢 Pendik Arkatlı Evleri</h1>
+            <p>Daire Bilgi ve Sorun Takip Sistemi</p>
         </div>
 
 ```
-    <div class="status-bar">
-        <div class="api-status">
-            <div class="status-dot" id="statusDot"></div>
-            <span id="statusText">API Key bekleniyor</span>
+    <div class="stats">
+        <div class="stat">
+            <div class="number">178</div>
+            <div class="label">Toplam Daire</div>
         </div>
-        <button class="btn-settings" onclick="openSettings()">⚙️ Ayarlar</button>
-    </div>
-
-    <div class="quick-stats">
-        <div class="stat"><div class="number">178</div><div class="label">Toplam Daire</div></div>
-        <div class="stat"><div class="number">407</div><div class="label">Sorun</div></div>
-        <div class="stat"><div class="number">8</div><div class="label">Blok</div></div>
-        <div class="stat"><div class="number" id="queryCount">0</div><div class="label">Soru</div></div>
-    </div>
-
-    <div class="chat-container" id="chatContainer">
-        <div class="message ai">
-            <div class="message-content">
-                👋 Merhaba! Pendik Arkatlı Evleri asistanıyım.<br><br>
-                <strong>Hızlı Başlat:</strong><br>
-                • Sağ üst: ⚙️ Ayarlar → Gemini API Key girin<br>
-                • Sorularınızı yazın veya 🎤 ile söyleyin<br><br>
-                <small>Aşağıdaki hızlı butonları da kullanabilirsiniz 👇</small>
-            </div>
+        <div class="stat">
+            <div class="number">407</div>
+            <div class="label">Tespit Edilen Sorun</div>
+        </div>
+        <div class="stat">
+            <div class="number">8</div>
+            <div class="label">Blok</div>
+        </div>
+        <div class="stat">
+            <div class="number" id="filteredCount">178</div>
+            <div class="label">Gösterilen</div>
         </div>
     </div>
 
-    <div class="loading" id="loading">💭 Düşünüyorum...</div>
-
-    <div class="input-container">
-        <div class="quick-buttons">
-            <button class="quick-btn" onclick="quickAsk('En çok sorun hangi blokta?')">📊 Sorunlar</button>
-            <button class="quick-btn" onclick="quickAsk('D bloku hakkında bilgi ver')">🏗️ D Blok</button>
-            <button class="quick-btn" onclick="quickAsk('Genel sorunlar neler?')">⚠️ Genel</button>
-            <button class="quick-btn" onclick="quickAsk('En değerli daireler?')">💎 Değerli</button>
+    <div class="search-section">
+        <div class="search-box">
+            <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="Daire kodu, blok veya sorun ara... (örn: D-86, C3, su almış)"
+                oninput="performSearch()"
+            />
+            <span class="icon">🔍</span>
         </div>
-        <div class="input-wrapper">
-            <input type="text" id="userInput" placeholder="Soru yazın (örn: C3-37 değeri?)" />
-            <button class="btn btn-primary" onclick="sendMessage()">Gönder</button>
-            <button class="btn btn-voice" id="voiceBtn" onclick="toggleVoice()">🎤</button>
+        
+        <div class="quick-filters">
+            <button class="filter-btn active" onclick="filterBlok('TÜM')">🏘️ Tüm Daireler</button>
+            <button class="filter-btn" onclick="filterBlok('D')">D Blok (49)</button>
+            <button class="filter-btn" onclick="filterBlok('C3')">C3 Blok (20)</button>
+            <button class="filter-btn" onclick="filterBlok('C1')">C1 Blok (17)</button>
+            <button class="filter-btn" onclick="filterBlok('A1')">A1 Blok (23)</button>
+            <button class="filter-btn" onclick="filterBlok('SORUNLU')">⚠️ Sorunlu</button>
+            <button class="filter-btn" onclick="showBlokOzet()">📊 Blok Özet</button>
         </div>
     </div>
-</div>
 
-<div class="modal" id="settingsModal">
-    <div class="modal-content">
-        <h2>⚙️ API Ayarları</h2>
-        <p><strong>Gemini API Key:</strong><br>Key'iniz tarayıcınızda güvenle saklanır.</p>
-        <input type="password" id="apiKeyInput" placeholder="AIza..." />
-        <p style="font-size: 12px; color: #999;">Sadece cihazınızda tutulur.</p>
-        <div class="modal-buttons">
-            <button class="btn-save" onclick="saveApiKey()">💾 Kaydet</button>
-            <button class="btn-cancel" onclick="closeSettings()">❌ İptal</button>
-        </div>
+    <div class="results" id="results">
+        <!-- Sonuçlar buraya gelecek -->
     </div>
 </div>
 
 <script>
-    const daireData = {"toplam":{"birim":178,"sorun":407},"bloklar":{"D":{"adet":49,"sorun":172},"B":{"adet":22,"sorun":77},"C1":{"adet":17,"sorun":39},"C3":{"adet":20,"sorun":41},"C4":{"adet":17,"sorun":38},"A1":{"adet":23,"sorun":14},"C2":{"adet":14,"sorun":16},"A2":{"adet":16,"sorun":10}},"daireler":{"A1-60":{"kat":"12.KAT","tip":"4+1","brut":"313.97m²","deger":"25.713.000TL","blok":"A1"},"A2-47":{"kat":"9.KAT","tip":"4+1","brut":"314.21m²","deger":"25.371.000TL","blok":"A2"},"B-80":{"kat":"13.KAT","tip":"4+1","brut":"303.37m²","deger":"25.092.000TL","blok":"B"},"C3-37":{"kat":"6.KAT","tip":"2+1","brut":"117.29m²","deger":"9.455.000TL","blok":"C3"},"C1-45":{"kat":"8.KAT","tip":"2+1","brut":"117.22m²","deger":"9.545.000TL","blok":"C1"},"D-86":{"kat":"8.KAT","tip":"1+1","brut":"76.32m²","deger":"5.905.000TL","blok":"D"},"D-122":{"blok":"D","sorun":"Su almış"},"D-133":{"blok":"D","sorun":"Su almış"},"D-141":{"blok":"D","sorun":"Su almış + kırık cam"},"D-142":{"blok":"D","sorun":"Su almış"},"D-145":{"blok":"D","sorun":"Su almış"},"D-134":{"blok":"D","sorun":"Kırık cam"},"D-138":{"blok":"D","sorun":"Kırık cam"}},"sorunlar":["Elektrik/su yok - sistemler kontrol edilemiyor","D 122-133-141-142-145 su almış","D 134-138-141 ve B 80 kırık cam","Topraklama hattı çekilmemiş"]};
+    // TÜM DAİRE VERİLERİ
+    const tumDaireler = [
+        {kod:"A1-60",blok:"A1",kat:"12.NORMAL KAT",tip:"4+1 TİP A",brut:"313.97 m²",net:"227.71 m²",deger:"₺25.713.000",ekspertiz:"₺24.720.000"},
+        {kod:"A2-47",blok:"A2",kat:"9.NORMAL KAT",tip:"4+1 TİP A",brut:"314.21 m²",net:"227.91 m²",deger:"₺25.371.000",ekspertiz:"₺25.100.000"},
+        {kod:"B-80",blok:"B",kat:"13.NORMAL KAT",tip:"4+1 TİP A",brut:"303.37 m²",deger:"₺25.092.000",ekspertiz:"₺24.540.000",sorun:"Kırık cam"},
+        {kod:"A1-64",blok:"A1",kat:"13.NORMAL KAT",tip:"4+1 TİP A",brut:"294.28 m²",deger:"₺24.330.000",ekspertiz:"₺23.240.000"},
+        {kod:"C3-37",blok:"C3",kat:"6.NORMAL KAT",tip:"2+1",brut:"117.29 m²",net:"82.99 m²",deger:"₺9.455.000",ekspertiz:"₺9.455.000"},
+        {kod:"C1-45",blok:"C1",kat:"8.NORMAL KAT",tip:"2+1",brut:"117.22 m²",net:"82.88 m²",deger:"₺9.545.000",ekspertiz:"₺9.545.000"},
+        {kod:"D-86",blok:"D",kat:"8.NORMAL KAT",tip:"1+1 TİP B",brut:"76.32 m²",net:"50.97 m²",deger:"₺5.905.000",ekspertiz:"₺5.905.000"},
+        {kod:"D-122",blok:"D",kat:"11.NORMAL KAT",tip:"1+1",brut:"83.13 m²",deger:"₺6.820.000",sorun:"Su almış"},
+        {kod:"D-133",blok:"D",kat:"12.NORMAL KAT",tip:"2+1",brut:"188.21 m²",deger:"₺15.564.000",sorun:"Su almış"},
+        {kod:"D-141",blok:"D",kat:"13.NORMAL KAT",tip:"2+1",brut:"174.12 m²",deger:"₺14.451.000",sorun:"Su almış + kırık cam"},
+        {kod:"D-142",blok:"D",kat:"13.NORMAL KAT",tip:"2+1",brut:"133.61 m²",deger:"₺10.994.000",sorun:"Su almış"},
+        {kod:"D-145",blok:"D",kat:"13.NORMAL KAT",tip:"1+1",brut:"76.32 m²",deger:"₺6.317.000",sorun:"Su almış"},
+        {kod:"D-134",blok:"D",kat:"12.NORMAL KAT",tip:"2+1",brut:"133.95 m²",deger:"₺10.996.000",sorun:"Kırık cam"},
+        {kod:"D-138",blok:"D",kat:"12.NORMAL KAT",tip:"1+1",brut:"76.32 m²",deger:"₺6.356.000",sorun:"Kırık cam"}
+    ];
 
-    let apiKey = localStorage.getItem('gemini_api_key');
-    let isRecording = false;
-    let recognition = null;
-    let queryCount = parseInt(localStorage.getItem('query_count') || '0');
-
-    window.onload = function() {
-        updateStatus();
-        updateQueryCount();
-        initSpeechRecognition();
-        if (!apiKey) setTimeout(() => addMessage('⚠️ ⚙️ Ayarlar\'dan Gemini API key girin.'), 1000);
+    const blokBilgileri = {
+        "D": {adet: 49, sorun: 172, doluluk: "27.5%"},
+        "B": {adet: 22, sorun: 77, doluluk: "12.4%"},
+        "C1": {adet: 17, sorun: 39, doluluk: "9.6%"},
+        "C2": {adet: 14, sorun: 16, doluluk: "7.9%"},
+        "C3": {adet: 20, sorun: 41, doluluk: "11.2%"},
+        "C4": {adet: 17, sorun: 38, doluluk: "9.6%"},
+        "A1": {adet: 23, sorun: 14, dohluk: "12.9%"},
+        "A2": {adet: 16, sorun: 10, doluluk: "9.0%"}
     };
 
-    function initSpeechRecognition() {
-        if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-            recognition = new SpeechRecognition();
-            recognition.lang = 'tr-TR';
-            recognition.continuous = false;
-            recognition.onresult = (e) => {
-                document.getElementById('userInput').value = e.results[0][0].transcript;
-                sendMessage();
-            };
-            recognition.onend = () => {
-                isRecording = false;
-                document.getElementById('voiceBtn').classList.remove('recording');
-            };
-        } else {
-            document.getElementById('voiceBtn').style.display = 'none';
+    const genelSorunlar = [
+        "Elektrik ve su abonelikleri olmadığı için sistemler kontrol edilemiyor",
+        "D 122-133-141-142-145 nolu daireler su almış",
+        "D 134-138-141 ve B 80 nolu dairelerde kırık camlar var",
+        "Pano kapağı ve LED trafosunda topraklama hattı çekilmemiş"
+    ];
+
+    let currentFilter = 'TÜM';
+
+    // Sayfa yüklendiğinde tüm daireleri göster
+    window.onload = function() {
+        displayResults(tumDaireler);
+    };
+
+    function displayResults(daireler) {
+        const resultsDiv = document.getElementById('results');
+        
+        if (daireler.length === 0) {
+            resultsDiv.innerHTML = `
+                <div class="no-results">
+                    <div class="icon">🔍</div>
+                    <h3>Sonuç bulunamadı</h3>
+                    <p>Arama kriterlerinizi değiştirip tekrar deneyin.</p>
+                </div>
+            `;
+            document.getElementById('filteredCount').textContent = '0';
+            return;
         }
+
+        let html = '';
+        daireler.forEach(daire => {
+            html += `
+                <div class="result-item">
+                    <div class="result-header">
+                        <div class="daire-kod">${daire.kod}</div>
+                        <div class="deger">${daire.deger}</div>
+                    </div>
+                    <div class="result-details">
+                        <div class="detail-item">
+                            <strong>Blok:</strong> ${daire.blok}
+                        </div>
+                        <div class="detail-item">
+                            <strong>Kat:</strong> ${daire.kat}
+                        </div>
+                        <div class="detail-item">
+                            <strong>Tip:</strong> ${daire.tip || '-'}
+                        </div>
+                        <div class="detail-item">
+                            <strong>Brüt:</strong> ${daire.brut}
+                        </div>
+                        ${daire.net ? `
+                        <div class="detail-item">
+                            <strong>Net:</strong> ${daire.net}
+                        </div>
+                        ` : ''}
+                        ${daire.ekspertiz ? `
+                        <div class="detail-item">
+                            <strong>Ekspertiz:</strong> ${daire.ekspertiz}
+                        </div>
+                        ` : ''}
+                    </div>
+                    ${daire.sorun ? `<div class="sorun-badge">⚠️ ${daire.sorun}</div>` : ''}
+                </div>
+            `;
+        });
+
+        resultsDiv.innerHTML = html;
+        document.getElementById('filteredCount').textContent = daireler.length;
     }
 
-    function toggleVoice() {
-        if (!recognition) { alert('Tarayıcınız sesli komut desteklemiyor.'); return; }
-        if (!apiKey) { alert('Önce API key girin (⚙️)'); return; }
-        if (isRecording) {
-            recognition.stop();
-        } else {
-            recognition.start();
-            isRecording = true;
-            document.getElementById('voiceBtn').classList.add('recording');
-        }
-    }
-
-    function openSettings() {
-        document.getElementById('settingsModal').classList.add('active');
-        document.getElementById('apiKeyInput').value = apiKey || '';
-    }
-
-    function closeSettings() {
-        document.getElementById('settingsModal').classList.remove('active');
-    }
-
-    function saveApiKey() {
-        const newKey = document.getElementById('apiKeyInput').value.trim();
-        if (!newKey) { alert('API key girin!'); return; }
-        if (!newKey.startsWith('AIza')) alert('Gemini key genelde "AIza" ile başlar.');
-        apiKey = newKey;
-        localStorage.setItem('gemini_api_key', apiKey);
-        updateStatus();
-        closeSettings();
-        addMessage('✅ API Key kaydedildi!');
-    }
-
-    function updateStatus() {
-        const dot = document.getElementById('statusDot');
-        const text = document.getElementById('statusText');
-        if (apiKey) {
-            dot.classList.add('active');
-            text.textContent = 'Hazır - Gemini AI';
-        } else {
-            dot.classList.remove('active');
-            text.textContent = 'API Key gerekli';
-        }
-    }
-
-    function updateQueryCount() {
-        document.getElementById('queryCount').textContent = queryCount;
-    }
-
-    function addMessage(content, isUser = false) {
-        const chat = document.getElementById('chatContainer');
-        const msg = document.createElement('div');
-        msg.className = `message ${isUser ? 'user' : 'ai'}`;
-        const content2 = document.createElement('div');
-        content2.className = 'message-content';
-        content2.innerHTML = content;
-        msg.appendChild(content2);
-        chat.appendChild(msg);
-        chat.scrollTop = chat.scrollHeight;
-    }
-
-    function quickAsk(q) {
-        document.getElementById('userInput').value = q;
-        sendMessage();
-    }
-
-    async function sendMessage() {
-        const input = document.getElementById('userInput');
-        const msg = input.value.trim();
-        if (!msg) return;
-        if (!apiKey) { alert('⚙️ Ayarlar → API key girin!'); openSettings(); return; }
-
-        addMessage(msg, true);
-        input.value = '';
-        queryCount++;
-        localStorage.setItem('query_count', queryCount);
-        updateQueryCount();
-
-        document.getElementById('loading').classList.add('active');
-
-        try {
-            const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${apiKey}`, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    contents: [{
-                        parts: [{
-                            text: `Pendik Arkatlı asistanısın. VERİ: ${JSON.stringify(daireData)} SORU: ${msg} CEVAP: Kısa, net, Türkçe. Daire kodları tam. TL cinsinden fiyat.`
-                        }]
-                    }]
-                })
-            });
-
-            const data = await res.json();
-            if (data.candidates && data.candidates[0] && data.candidates[0].content) {
-                addMessage(data.candidates[0].content.parts[0].text);
-            } else if (data.error) {
-                addMessage(`❌ ${data.error.message}`);
-                if (data.error.message.includes('API')) addMessage('⚠️ API key kontrol edin.');
+    function performSearch() {
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        
+        let filtered = tumDaireler;
+        
+        // Önce blok filtresi uygula
+        if (currentFilter !== 'TÜM') {
+            if (currentFilter === 'SORUNLU') {
+                filtered = filtered.filter(d => d.sorun);
             } else {
-                addMessage('❌ Hata oluştu.');
+                filtered = filtered.filter(d => d.blok === currentFilter);
             }
-        } catch (error) {
-            addMessage(`❌ ${error.message}`);
         }
-
-        document.getElementById('loading').classList.remove('active');
+        
+        // Sonra arama filtresi
+        if (searchTerm) {
+            filtered = filtered.filter(daire => {
+                return (
+                    daire.kod.toLowerCase().includes(searchTerm) ||
+                    daire.blok.toLowerCase().includes(searchTerm) ||
+                    daire.kat.toLowerCase().includes(searchTerm) ||
+                    (daire.tip && daire.tip.toLowerCase().includes(searchTerm)) ||
+                    (daire.sorun && daire.sorun.toLowerCase().includes(searchTerm))
+                );
+            });
+        }
+        
+        displayResults(filtered);
     }
 
-    document.getElementById('userInput').addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendMessage();
-    });
+    function filterBlok(blok) {
+        // Butonları güncelle
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+        
+        currentFilter = blok;
+        document.getElementById('searchInput').value = '';
+        
+        if (blok === 'TÜM') {
+            displayResults(tumDaireler);
+        } else if (blok === 'SORUNLU') {
+            const sorunluDaireler = tumDaireler.filter(d => d.sorun);
+            displayResults(sorunluDaireler);
+        } else {
+            const blokDaireler = tumDaireler.filter(d => d.blok === blok);
+            displayResults(blokDaireler);
+        }
+    }
 
-    document.getElementById('settingsModal').addEventListener('click', (e) => {
-        if (e.target.id === 'settingsModal') closeSettings();
-    });
+    function showBlokOzet() {
+        const resultsDiv = document.getElementById('results');
+        let html = '<h2 style="margin-bottom: 20px; color: #667eea;">📊 Blok Bazında Özet</h2>';
+        
+        Object.keys(blokBilgileri).forEach(blok => {
+            const bilgi = blokBilgileri[blok];
+            html += `
+                <div class="blok-section">
+                    <div class="blok-header">${blok} Blok</div>
+                    <div class="blok-stats">
+                        <div class="blok-stat">
+                            <strong style="font-size: 24px; color: #667eea;">${bilgi.adet}</strong>
+                            <div style="font-size: 12px; color: #666;">Daire</div>
+                        </div>
+                        <div class="blok-stat">
+                            <strong style="font-size: 24px; color: #dc3545;">${bilgi.sorun}</strong>
+                            <div style="font-size: 12px; color: #666;">Sorun</div>
+                        </div>
+                        <div class="blok-stat">
+                            <strong style="font-size: 24px; color: #28a745;">${bilgi.doluluk}</strong>
+                            <div style="font-size: 12px; color: #666;">Doluluk</div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+        
+        html += '<h3 style="margin: 30px 0 15px 0; color: #667eea;">⚠️ Genel Sorunlar</h3>';
+        html += '<ul style="padding-left: 20px;">';
+        genelSorunlar.forEach(sorun => {
+            html += `<li style="margin-bottom: 10px; color: #666;">${sorun}</li>`;
+        });
+        html += '</ul>';
+        
+        resultsDiv.innerHTML = html;
+    }
 </script>
 ```
 

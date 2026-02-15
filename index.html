@@ -286,7 +286,7 @@
     <div class="container">
         <div class="header">
             <h1>🏠 KİPTAŞ Pendik Arkatlı Evleri</h1>
-            <p>Akıllı Emlak Asistanı - 178 Daireyle Tam Veri Tabanı!</p>
+            <p>🤖 Yapay Zeka Asistan - Doğal dille konuş, istediğin daireyi bul!</p>
         </div>
 
 ```
@@ -295,7 +295,7 @@
             <input type="text" 
                    class="search-input" 
                    id="searchInput" 
-                   placeholder="Örnek: C1-45 dairesinin bilgilerini göster, D blokta kaç daire var?, En değerli 5 daireyi göster..."
+                   placeholder="Örnek: '2+1 en değerli 5 tanesi', '5. kat üstü', 'D blokta kaç 1+1 var?', 'Kira getirisi en yüksek'..."
                    autocomplete="off">
             <button class="search-btn" onclick="handleSearch()">🔍 Ara</button>
         </div>
@@ -303,24 +303,45 @@
         <div class="quick-filters">
             <button class="filter-btn" onclick="quickSearch('Tüm daireleri göster')">📋 Tümü</button>
             <button class="filter-btn" onclick="quickSearch('En değerli 10 daireyi göster')">💎 En Değerliler</button>
-            <button class="filter-btn" onclick="quickSearch('A1 blok daireler')">🏢 A1 Blok</button>
-            <button class="filter-btn" onclick="quickSearch('D blok daireler')">🏢 D Blok</button>
+            <button class="filter-btn" onclick="quickSearch('2+1 daireler')">🛏️ 2+1</button>
             <button class="filter-btn" onclick="quickSearch('3+1 daireler')">🛏️ 3+1</button>
+            <button class="filter-btn" onclick="quickSearch('5. kat üstü')">⬆️ Üst Katlar</button>
+            <button class="filter-btn" onclick="quickSearch('D blok daireler')">🏢 D Blok</button>
+            <button class="filter-btn" onclick="quickSearch('Zemin kat')">🏠 Zemin Kat</button>
+            <button class="filter-btn" onclick="quickSearch('Kira getirisi en yüksek 10')">💰 En İyi Getiri</button>
         </div>
 
         <div class="examples">
-            <h3>💡 Örnek Sorular:</h3>
+            <h3>💡 Akıllı Sorular - Yapay Zeka Gibi:</h3>
             <div class="example-item" onclick="quickSearch('C1-45 dairesinin tüm bilgileri')">
                 "C1-45 dairesinin tüm bilgileri"
             </div>
             <div class="example-item" onclick="quickSearch('D blokta kaç daire var')">
                 "D blokta kaç daire var?"
             </div>
-            <div class="example-item" onclick="quickSearch('10 milyon üstü daireler')">
-                "10 milyon üstü daireler"
+            <div class="example-item" onclick="quickSearch('5. kat üstü daireler')">
+                "5. kat üstü daireler" (6m altı üst katlar)
             </div>
-            <div class="example-item" onclick="quickSearch('Brüt alanı 150 m2 üstü daireler')">
-                "Brüt alanı 150 m² üstü daireler"
+            <div class="example-item" onclick="quickSearch('2+1 en değerli 5 tanesi')">
+                "2+1 en değerli 5 tanesi"
+            </div>
+            <div class="example-item" onclick="quickSearch('3+1 en ucuz daireler')">
+                "3+1 en ucuz daireler"
+            </div>
+            <div class="example-item" onclick="quickSearch('En geniş 10 daire')">
+                "En geniş 10 daire"
+            </div>
+            <div class="example-item" onclick="quickSearch('D blokta kaç 1+1 var')">
+                "D blokta kaç 1+1 var?"
+            </div>
+            <div class="example-item" onclick="quickSearch('Zemin kat daireler')">
+                "Zemin kat daireler"
+            </div>
+            <div class="example-item" onclick="quickSearch('Kira getirisi en yüksek 10 daire')">
+                "Kira getirisi en yüksek 10 daire"
+            </div>
+            <div class="example-item" onclick="quickSearch('A1 blokta en pahalı daire')">
+                "A1 blokta en pahalı daire"
             </div>
         </div>
     </div>
@@ -2697,12 +2718,27 @@
     function performSearch(query) {
         const resultsDiv = document.getElementById('results');
         let filteredApartments = [...apartments];
+        let sortType = null;
+        let limitCount = null;
+
+        // Extract room type if specified (2+1, 3+1, etc.)
+        let roomTypeFilter = null;
+        const roomMatch = query.match(/(\d\+\d)/);
+        if (roomMatch) {
+            roomTypeFilter = roomMatch[1];
+        }
+
+        // Extract limit number if specified
+        const limitMatch = query.match(/(\d+)\s*(adet|tane|tanesi)?/);
+        if (limitMatch && (query.includes('en') || query.includes('ilk'))) {
+            limitCount = parseInt(limitMatch[1]);
+        }
 
         // Specific apartment search (e.g., "C1-45")
         const apartmentPattern = /([a-z]\d?)-?(\d+)/i;
         const match = query.match(apartmentPattern);
         
-        if (match) {
+        if (match && !query.includes('blok')) {
             const blok = match[1].toUpperCase();
             const daire = match[2];
             filteredApartments = apartments.filter(apt => 
@@ -2717,80 +2753,129 @@
                 filteredApartments = apartments.filter(apt => apt.blok === blok);
             }
         }
+
+        // Apply room type filter first if specified
+        if (roomTypeFilter) {
+            filteredApartments = filteredApartments.filter(apt => apt.tip && apt.tip.includes(roomTypeFilter));
+        }
+
+        // Floor filters - improved to handle "5. kat üstü", "6m altı üst katlarda"
+        if (query.includes('kat') && !query.includes('blok')) {
+            const katMatch = query.match(/(\d+)[.\s]*kat/);
+            if (katMatch) {
+                const targetKat = parseInt(katMatch[1]);
+                if (query.includes('üst') || query.includes('yukarı') || query.includes('sonra')) {
+                    filteredApartments = filteredApartments.filter(apt => apt.kat_no >= targetKat);
+                } else if (query.includes('alt') || query.includes('aşağı')) {
+                    filteredApartments = filteredApartments.filter(apt => apt.kat_no <= targetKat);
+                } else {
+                    filteredApartments = filteredApartments.filter(apt => apt.kat_no === targetKat);
+                }
+            } else if (query.includes('zemin')) {
+                filteredApartments = filteredApartments.filter(apt => apt.kat_no === 0);
+            }
+        }
+
         // Price filters
-        else if (query.includes('milyon') || query.includes('tl')) {
+        if (query.includes('milyon') || query.includes('tl')) {
             const priceMatch = query.match(/(\d+)\s*milyon/);
             if (priceMatch) {
                 const targetPrice = parseInt(priceMatch[1]) * 1000000;
                 if (query.includes('üst') || query.includes('fazla') || query.includes('yukarı')) {
-                    filteredApartments = apartments.filter(apt => parsePrice(apt.ekspertiz) >= targetPrice);
+                    filteredApartments = filteredApartments.filter(apt => parsePrice(apt.ekspertiz) >= targetPrice);
                 } else if (query.includes('alt') || query.includes('düşük')) {
-                    filteredApartments = apartments.filter(apt => parsePrice(apt.ekspertiz) <= targetPrice);
+                    filteredApartments = filteredApartments.filter(apt => parsePrice(apt.ekspertiz) <= targetPrice);
                 }
             }
         }
-        // Area filters
-        else if (query.includes('m²') || query.includes('m2') || query.includes('alan')) {
+
+        // Area filters - improved
+        if (query.includes('m²') || query.includes('m2') || query.includes('alan') || query.includes('geniş')) {
             const areaMatch = query.match(/(\d+)\s*m/);
             if (areaMatch) {
                 const targetArea = parseInt(areaMatch[1]);
-                if (query.includes('üst') || query.includes('büyük')) {
-                    filteredApartments = apartments.filter(apt => parseFloat(apt.brut.replace(',', '.')) >= targetArea);
+                if (query.includes('üst') || query.includes('büyük') || query.includes('geniş')) {
+                    filteredApartments = filteredApartments.filter(apt => parseFloat(apt.brut.replace(',', '.')) >= targetArea);
                 } else if (query.includes('alt') || query.includes('küçük')) {
-                    filteredApartments = apartments.filter(apt => parseFloat(apt.brut.replace(',', '.')) <= targetArea);
+                    filteredApartments = filteredApartments.filter(apt => parseFloat(apt.brut.replace(',', '.')) <= targetArea);
                 }
             }
         }
-        // Floor filters
-        else if (query.includes('kat') && !query.includes('blok')) {
-            const katMatch = query.match(/(\d+)[.\s]*kat/);
-            if (katMatch) {
-                const targetKat = parseInt(katMatch[1]);
-                if (query.includes('üst')) {
-                    filteredApartments = apartments.filter(apt => apt.kat_no >= targetKat);
-                } else if (query.includes('alt')) {
-                    filteredApartments = apartments.filter(apt => apt.kat_no <= targetKat);
-                } else {
-                    filteredApartments = apartments.filter(apt => apt.kat_no === targetKat);
-                }
-            }
+
+        // Sorting logic
+        if (query.includes('değerli') || query.includes('pahalı') || query.includes('yüksek') || query.includes('büyük fiyat')) {
+            sortType = 'price_desc';
+        } else if (query.includes('ucuz') || query.includes('ekonomik') || query.includes('düşük fiyat')) {
+            sortType = 'price_asc';
+        } else if (query.includes('geniş') || query.includes('büyük alan')) {
+            sortType = 'area_desc';
+        } else if (query.includes('küçük alan')) {
+            sortType = 'area_asc';
+        } else if (query.includes('kira getiri') || query.includes('getiri')) {
+            sortType = 'rent_yield';
         }
-        // Most expensive
-        else if (query.includes('değerli') || query.includes('pahalı') || query.includes('yüksek')) {
+
+        // Apply sorting
+        if (sortType === 'price_desc') {
             filteredApartments.sort((a, b) => parsePrice(b.ekspertiz) - parsePrice(a.ekspertiz));
-            const limitMatch = query.match(/(\d+)/);
-            if (limitMatch) {
-                const limit = parseInt(limitMatch[1]);
-                filteredApartments = filteredApartments.slice(0, limit);
-            } else {
-                filteredApartments = filteredApartments.slice(0, 10);
-            }
-        }
-        // Cheapest
-        else if (query.includes('ucuz') || query.includes('ekonomik')) {
+        } else if (sortType === 'price_asc') {
             filteredApartments.sort((a, b) => parsePrice(a.ekspertiz) - parsePrice(b.ekspertiz));
-            const limitMatch = query.match(/(\d+)/);
-            if (limitMatch) {
-                const limit = parseInt(limitMatch[1]);
-                filteredApartments = filteredApartments.slice(0, limit);
-            } else {
-                filteredApartments = filteredApartments.slice(0, 10);
-            }
+        } else if (sortType === 'area_desc') {
+            filteredApartments.sort((a, b) => parseFloat(b.brut.replace(',', '.')) - parseFloat(a.brut.replace(',', '.')));
+        } else if (sortType === 'area_asc') {
+            filteredApartments.sort((a, b) => parseFloat(a.brut.replace(',', '.')) - parseFloat(b.brut.replace(',', '.')));
+        } else if (sortType === 'rent_yield') {
+            filteredApartments = filteredApartments.filter(apt => apt.kira);
+            filteredApartments.sort((a, b) => {
+                const yieldA = parsePrice(a.kira) / parsePrice(a.ekspertiz);
+                const yieldB = parsePrice(b.kira) / parsePrice(b.ekspertiz);
+                return yieldB - yieldA;
+            });
         }
-        // Room type (3+1, 2+1, etc.)
-        else if (query.match(/\d\+\d/)) {
-            const roomMatch = query.match(/(\d\+\d)/);
-            if (roomMatch) {
-                const roomType = roomMatch[1];
-                filteredApartments = apartments.filter(apt => apt.tip && apt.tip.includes(roomType));
-            }
+
+        // Apply limit if specified
+        if (limitCount && limitCount > 0) {
+            filteredApartments = filteredApartments.slice(0, limitCount);
+        } else if (!limitCount && sortType) {
+            // Default to 10 if sorting but no limit specified
+            filteredApartments = filteredApartments.slice(0, 10);
         }
+
         // Show all
-        else if (query.includes('tüm') || query.includes('hepsi') || query.includes('all')) {
+        if (query.includes('tüm') || query.includes('hepsi') || query.includes('all')) {
             filteredApartments = apartments;
         }
 
+        // Count queries
+        if (query.includes('kaç') || query.includes('sayı')) {
+            displayCountResult(filteredApartments, query);
+            return;
+        }
+
         displayResults(filteredApartments, query);
+    }
+
+    function displayCountResult(results, query) {
+        const resultsDiv = document.getElementById('results');
+        
+        let html = `
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">${results.length}</div>
+                    <div class="stat-label">Toplam Daire</div>
+                </div>
+            </div>
+            <div style="text-align: center; padding: 40px;">
+                <h2 style="color: #667eea; font-size: 48px; margin-bottom: 20px;">${results.length} Daire</h2>
+                <p style="color: #666; font-size: 18px;">Aramanız: "${query}"</p>
+                <button onclick="quickSearch('${query.replace('kaç', 'tüm').replace('sayı', 'tüm')}')" 
+                        style="margin-top: 20px; padding: 15px 30px; background: #667eea; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 16px;">
+                    🔍 Daireleri Göster
+                </button>
+            </div>
+        `;
+        
+        resultsDiv.innerHTML = html;
     }
 
     function displayResults(results, query) {
